@@ -1,0 +1,166 @@
+page{
+    background-color: #eeeff2;
+}
+.index{
+    padding-bottom: 160rpx;
+    .h2{
+        font-size: 24rpx;
+        font-weight: 600;
+        color: #999999;
+        margin: 32rpx 0 10rpx 40rpx;
+    }
+    .title{
+        margin: 0 20rpx;
+        border-radius: 16rpx;
+        background-color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 32rpx 32rpx 30rpx 22rpx;
+        .left{
+            .h3{
+                font-weight: 600;
+                font-size: 32rpx;
+                color: #333333;
+                margin-bottom: 24rpx;
+            }
+            view{
+                font-weight: 400;
+                font-size: 24rpx;
+                color: #999999;
+
+            }
+        }
+        .right{
+            font-weight: 400;
+            font-size: 24rpx;
+            color: #0D2EF0;
+        }
+    }
+    .questions{
+        margin: 0 20rpx;
+        border-radius: 16rpx;
+        background-color: #ffffff;
+        padding: 32rpx 32rpx 30rpx 22rpx;
+        
+        .question{
+            .h4{
+                font-weight: 600;
+                color: #333333;
+                font-size: 24rpx;
+                margin-bottom: 24rpx;
+            }
+            :global(.at-image-picker){
+                margin-bottom: 44rpx;
+            }
+            input{
+                height: 48rpx;
+                font-size: 22rpx;
+                border: 1px solid #DEDEDE;
+                box-sizing: border-box;
+                border-radius: 4px;
+                padding-left: 20rpx;
+            }
+        }
+    }
+    .settings{
+        margin: 0 20rpx;
+        border-radius: 16rpx;
+        background-color: #ffffff;
+        padding: 32rpx 32rpx 30rpx 22rpx;
+        margin-bottom: 20rpx;
+
+        .line{
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            width: 400rpx;
+            margin-bottom: 30rpx;
+        
+            .l{
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                font-size: 20rpx;
+                .font{
+                   color: red; 
+                }
+                .setting{
+
+                }
+            }
+            .r{
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                font-size: 16rpx;
+                .input{
+                    width: 86rpx;
+                    height: 40rpx;
+                    border: 2rpx solid #DEDEDE;
+                    box-sizing: border-box;
+                    border-radius: 8rpx;
+                    display: flex;
+                    align-items: center;
+                    padding-left: 20rpx;
+                }
+                .dw{
+                    margin-left: 8rpx;
+
+                }
+                .methods{
+                    display: flex;
+                    flex-direction: column;
+
+                    .method{
+                        display: flex;
+                        margin-bottom: 16rpx;
+                        .methodName{
+                            margin-right: 26rpx;
+                        }
+                    }
+                }
+            }
+    
+        }
+    }
+     // 固定的底部
+     .handle{
+        box-shadow: 8rpx 0px 16rpx rgba(0, 0, 0, 0.1);
+        position: fixed;
+        bottom: 0rpx;
+        left: 0rpx;
+        width: 100vw;
+        height: 160rpx;
+        background-color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        .btn{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 344rpx;
+            height: 88rpx;
+            font-size: 28rpx;
+            font-weight: 600;
+            color: #0D2EF0;
+            border: 2rpx solid #0D2EF0;
+            box-sizing: border-box;
+            border-radius: 8rpx;
+            background-color: #ffffff;
+            &:nth-child(2){
+                background: linear-gradient(90deg, #0D80EE 0%, #0D2EF0 100%);
+                color: #ffffff;
+                border: 0rpx solid transparent;
+            }
+
+            .icon{
+                width: 32rpx;
+                height: 32rpx;
+                margin-right: 6rpx;
+            }
+        }
+
+    }
+}

@@ -1,0 +1,48 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/FLcategory/index",
+          "pathName": "pages/FLcategory/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/FLTemplate/index",
+          "pathName": "pages/FLTemplate/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/FLedit/index",
+          "pathName": "pages/FLedit/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/Results/index",
+          "pathName": "pages/Results/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

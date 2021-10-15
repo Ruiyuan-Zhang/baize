@@ -1,0 +1,178 @@
+page{
+    background-color: #f1f1f4;
+}
+.index{
+    height: 100%;
+    // background-color: #f0f1f4;
+    .header{
+        .bg{
+            background: url('https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_bg_image.png');
+            width: 750rpx;
+            height: 400rpx;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .searchWrap{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72rpx;
+            margin: 0 20rpx;
+            margin-top: 160rpx;
+            z-index: 2;
+            .search{
+                width: 640rpx;
+                height: 72rpx;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background-color: #ffffff;
+                border-radius: 200rpx;
+                
+                .icon{
+                    width: 40rpx;
+                    height: 40rpx;
+                    margin-left: 22rpx;
+                    margin-right: 8rpx;
+                }
+                .input{
+                    flex: 1;
+                    font-size: 28rpx;
+                    color: rgba(51, 51, 51, 0.3);
+                }
+                .btn{
+                    color: #0D5BEF;
+                    padding: 0;
+                    margin: 0;
+                    width: 128rpx;
+                    height: 60rpx;
+                    margin-right: 6rpx;
+                    background: rgba(13, 91, 239, 0.3);
+                }
+            }
+            .add{
+                width: 48rpx;
+                height: 48rpx;
+            }
+        }
+        
+        .intro{
+            width: 710rpx;
+            height: 360rpx;
+            margin-left: 20rpx;
+            margin-top: 40rpx;
+        }
+    }
+    .questionaire{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        image{
+            width: calc(177rpx * 2);
+            height: calc(95rpx * 2);
+        }
+        
+    }
+    // hot与fun共用
+    .title{
+        padding-left: 14rpx;
+        padding-right: 20rpx;
+        padding-top: 16rpx;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .titleIcon{
+            height: calc(28rpx * 2);
+        }
+        .more{
+            font-size: 24rpx;
+            color: #C7C7C7;
+            .moreIcon{
+                width: 24rpx;
+                height: 24rpx;
+            }
+        }
+    }
+    .hot{
+        background: url('https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011142103.png');
+        background-size:calc(355rpx * 2)  calc(393rpx * 2);
+        background-repeat:no-repeat;
+        margin: 0 20rpx;
+        border-radius: 16rpx;
+        .hotRank{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 28rpx 14rpx;
+            background-color: #ffffff;
+        }
+    }
+    .fun{
+        background: url('https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011153616.png');
+        background-size:calc(355rpx * 2)  calc(393rpx * 2);
+        background-color: white;
+        background-repeat:no-repeat;
+        margin: 0 20rpx;
+        border-radius: 16rpx;
+        .qItems{
+            padding-left: 38rpx;
+            padding-right: 20rpx;
+            padding-top: 6rpx;
+            padding-bottom: 28rpx;
+            .item{
+                margin-bottom: 28rpx;
+            }
+        }
+    }
+    .tail{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // 尽头提示
+        :global(.at-divider){
+            width: 550rpx;
+            :global(.at-divider__content){
+                font-size: 20rpx;
+                background-color: #f1f1f4;
+            }
+        }
+    }
+}
+
+// 热门模型推荐 子元素
+.hotItem{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin-bottom: 28rpx;
+    .hotItemImage{
+        width: calc(108rpx * 2);
+        height: calc(108rpx * 2);
+    }
+    .rankImage{
+        width: 70rpx;
+        height: 36rpx;
+        position: absolute;
+        top: 10rpx;
+        left: -10rpx;
+
+    }
+    .hotItemName{
+        color: rgba(51, 51, 51, 1);
+        font-size: 20rpx;
+        margin: 4rpx 0;
+    }
+    .tag{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4rpx;
+        width: 80rpx;
+        height: 16rpx;
+        font-size: 12rpx;
+    }
+}
+

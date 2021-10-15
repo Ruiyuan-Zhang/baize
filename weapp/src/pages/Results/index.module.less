@@ -1,0 +1,43 @@
+.index{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    .results{
+        height: 236rpx;
+        width: 180rpx;
+        margin-bottom: 100rpx;
+    }
+    .btn{
+        width: 540rpx;
+        height: 88rpx;
+        border: 2rpx solid #0D5BEF;
+        border-radius: 8rpx;
+        font-size: 32rpx;
+        color: #0D2EF0;
+        font-weight: 600;
+        margin-bottom: 100rpx;
+    }
+    :global(.at-divider){
+        width: 710rpx;
+        margin-bottom: 40rpx;
+        :global(.at-divider__content){
+            color: #999999;
+            font-size: 28rpx;
+        }
+    }
+    .shares{
+        height: 228rpx;
+        width: 380rpx;
+        .share{
+            width: 80rpx;
+            height: 100rpx;
+            margin-right: 70rpx;
+            &:nth-child(3),
+            &:nth-child(6){
+                margin-right: 0;
+            }
+        }
+    }
+}
