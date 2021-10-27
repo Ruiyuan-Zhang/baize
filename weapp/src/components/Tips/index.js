@@ -1,9 +1,9 @@
 import { View, Image } from '@tarojs/components'
 import styles from './index.module.less'
 
-const Index = ({text}) =>{
+const Index = ({text, className}) =>{
     return(
-    <View className={styles.index}>
+    <View className={className + ' ' + styles.index}>
         <View className={styles.tips}>
             <Image
               src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211015010444.png'></Image>

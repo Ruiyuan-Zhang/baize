@@ -27,7 +27,7 @@ const Index = () =>{
             >
                 <AtTabsPane current={current} index={0}>
                     <View className={styles.content}>
-                        <View className={styles.item}
+                        <View className={styles.item} hoverClass={styles.btnOn}
                           onClick={()=>Taro.navigateTo({url:'/pages/FLTemplate/index'})}
                         >
                             <Image className={styles.image} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211013232856.png'></Image>

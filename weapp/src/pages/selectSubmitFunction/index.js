@@ -16,12 +16,12 @@ const index = () =>{
                     <Input className={styles.input} type='text' placeholder='请输入想要搜索的问卷名称' />
                     <AtButton className={styles.btn} circle size='small' >搜索</AtButton>
                 </View>
-          </View>
+            </View>
             <View className={styles.item}>
                 <View className={styles.fl + " " + styles.method}>
                     <View className={styles.name}>联邦学习问卷</View>
                     <View className={styles.content}>
-                        <View className={styles.btn}
+                        <View className={styles.btn} hoverClass={styles.btnOn}
                           onClick={()=>Taro.navigateTo({url:'/pages/FLcategory/index'})}
                         >
                             <Image className={styles.icon} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/issue_lianbang_muban_icon@3x.png'></Image>

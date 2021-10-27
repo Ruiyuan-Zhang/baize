@@ -94,7 +94,7 @@ const Index = () =>{
                 >
                     <Image className={styles.icon} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211015200534.png'></Image>
                     发布
-                </Button>
+                </Button> 
             </View>
         </View>
     )

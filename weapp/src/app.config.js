@@ -7,9 +7,13 @@ export default {
     'pages/FLTemplate/index',
     'pages/FLedit/index',
     'pages/Results/index',
-    'pages/mine/index'
+    'pages/mine/index',
+    'pages/modelDesc/index',
+    'pages/questionnaireList/index',
+    'pages/myBaize/index'
   ],
   tabBar: {
+    custom:true,
     list: [{
       pagePath: "pages/index/index",
       text: "首页"

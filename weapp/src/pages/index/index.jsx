@@ -1,6 +1,8 @@
 import { View, Input, Image } from '@tarojs/components'
 import { AtButton,AtDivider } from 'taro-ui'
 import QuestionaireItem from '@/components/QuestionaireItem'
+import Tail from '@/components/Tail'
+import Tabbar from '@/components/Tabbar'
 import Taro from '@tarojs/taro'
 import styles from './index.module.less'
 
@@ -28,6 +30,25 @@ const HotItem = ({rank, rankImage, name, tag, color, tagColor, image})=>{
   )
 }
 
+
+const questionaireItems = [{
+  id:'876576456',
+  src:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011155123.png', name:'手写数字识别', category:'联邦学习', info:'当给定一个数字时，在所给定的模版中逐一通过像素去比对，找出最相近的模版，并返回这个模版的数值标签，这个标签就是这个数字的值。事与愿违，由于手写数字千变万化，比如6，8，9这3个数字在进行像素比对时，所给测试数字由于大小形状问题，造成容易搞混的的情况。', 
+  author:'浙江大学', see:123
+},{
+  id:'876576356',
+  src:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011155123.png', name:'手写数字识别', category:'联邦学习', info:'当给定一个数字时，在所给定的模版中逐一通过像素去比对，找出最相近的模版，并返回这个模版的数值标签，这个标签就是这个数字的值。事与愿违，由于手写数字千变万化，比如6，8，9这3个数字在进行像素比对时，所给测试数字由于大小形状问题，造成容易搞混的的情况。', 
+  author:'浙江大学', see:123
+},{
+  id:'870576456',
+  src:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011155123.png', name:'手写数字识别', category:'联邦学习', info:'当给定一个数字时，在所给定的模版中逐一通过像素去比对，找出最相近的模版，并返回这个模版的数值标签，这个标签就是这个数字的值。事与愿违，由于手写数字千变万化，比如6，8，9这3个数字在进行像素比对时，所给测试数字由于大小形状问题，造成容易搞混的的情况。', 
+  author:'浙江大学', see:123
+},{
+  id:'875576456',
+  src:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011155123.png', name:'手写数字识别', category:'联邦学习', info:'当给定一个数字时，在所给定的模版中逐一通过像素去比对，找出最相近的模版，并返回这个模版的数值标签，这个标签就是这个数字的值。事与愿违，由于手写数字千变万化，比如6，8，9这3个数字在进行像素比对时，所给测试数字由于大小形状问题，造成容易搞混的的情况。', 
+  author:'浙江大学', see:123
+},]
+
 const index = () =>{
   return (
   <View className={styles.index}>
@@ -44,10 +65,14 @@ const index = () =>{
       <Image className={styles.intro} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211009205105.png'></Image>
     </View>
     <View className={styles.questionaire}> 
-        <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_button_fabu@3x.png'
-          onClick={()=>Taro.navigateTo({url:'/pages/selectSubmitFunction/index'})}
-        ></Image>
-        <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_button_tianxie@3x.png'></Image>
+        <View hoverClass={styles.on}>
+          <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_button_fabu@3x.png'
+            onClick={()=>Taro.navigateTo({url:'/pages/selectSubmitFunction/index'})}
+          ></Image>
+        </View>
+        <View>
+          <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_button_tianxie@3x.png'></Image>
+        </View>
     </View>
     <View className={styles.hot}>
         <View className={styles.title}>
@@ -66,29 +91,23 @@ const index = () =>{
     <View className={styles.fun}>
         <View className={styles.title}>
           <Image className={styles.titleIcon} mode='heightFix' src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/wenjuan_title@3x.png'></Image>
-          <View className={styles.more}>
+          <View className={styles.more}
+            onClick={()=>Taro.navigateTo({url:'/pages/questionnaireList/index'})}
+          >
             查看更多
             <Image className={styles.moreIcon} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/more_icon@2x.png' ></Image>
           </View>
         </View>
         <View className={styles.qItems}>
-          <View className={styles.item}>
-            <QuestionaireItem ></QuestionaireItem>
-          </View>
-          <View className={styles.item}>
-            <QuestionaireItem ></QuestionaireItem>
-          </View>
-          <View className={styles.item}>
-            <QuestionaireItem ></QuestionaireItem>
-          </View>
-          <View className={styles.item}>
-            <QuestionaireItem ></QuestionaireItem>
-          </View>
+          {questionaireItems.map(i=>(
+            <View className={styles.item} key={i.id}>
+              <QuestionaireItem {...i}></QuestionaireItem>
+            </View>
+          ))}
         </View>
     </View>
-    <View className={styles.tail}>
-      <AtDivider content='别翻了，你已经达到世界的尽头' fontColor='#999999'></AtDivider>
-    </View>
+    <Tail />
+    <Tabbar index={0} />
   </View>
   )
 }

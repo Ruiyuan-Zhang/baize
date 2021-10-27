@@ -93,6 +93,7 @@ const Index = () =>{
             </View>
             <Button className={styles.btn}
               onClick={()=>Taro.navigateTo({url:'/pages/FLedit/index'})}
+              hoverClass={styles.btnOn}
             >
                 <Image className={styles.add} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211015011426.png'></Image>
                 使用此模板创建

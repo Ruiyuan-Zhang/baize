@@ -2,7 +2,7 @@ page{
     background-color: #f1f1f4;
 }
 .index{
-    height: 100%;
+    padding-bottom: 160rpx;
     // background-color: #f0f1f4;
     .header{
         .bg{
@@ -10,6 +10,7 @@ page{
             width: 750rpx;
             height: 400rpx;
             position: absolute;
+            background-size: 750rpx 400rpx;
             top: 0;
             left: 0;
             z-index: -1;
@@ -69,6 +70,9 @@ page{
         display: flex;
         align-items: center;
         justify-content: center;
+        .on{
+            border: 2rpx solid red;
+        }
         image{
             width: calc(177rpx * 2);
             height: calc(95rpx * 2);
@@ -117,25 +121,8 @@ page{
         margin: 0 20rpx;
         border-radius: 16rpx;
         .qItems{
-            padding-left: 38rpx;
-            padding-right: 20rpx;
-            padding-top: 6rpx;
-            padding-bottom: 28rpx;
             .item{
                 margin-bottom: 28rpx;
-            }
-        }
-    }
-    .tail{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        // 尽头提示
-        :global(.at-divider){
-            width: 550rpx;
-            :global(.at-divider__content){
-                font-size: 20rpx;
-                background-color: #f1f1f4;
             }
         }
     }
