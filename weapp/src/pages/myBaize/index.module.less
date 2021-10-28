@@ -1,9 +1,18 @@
+page{
+    background-color: #f1f1f4;
+}
+
 .index{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     .back{
         background: url('https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/baizexing_bg@3x.png');
         background-size: 750rpx 420rpx;
         width: 750rpx;
         height: 420rpx;
+        position: relative;
+        flex-shrink: inherit;
         
         .line{
             display: flex;
@@ -28,6 +37,7 @@
             background-size: 710rpx 390rpx;
             margin-left: 18rpx;
             margin-top: 26rpx;
+            z-index: 100;
             .user{
                 display: flex;
                 align-items: center;
@@ -83,7 +93,12 @@
                     }
                 }
             }
-
         }
     }
+
+    .tabs{
+        flex: 1;
+        padding-top: 200rpx;
+    }
 }
+

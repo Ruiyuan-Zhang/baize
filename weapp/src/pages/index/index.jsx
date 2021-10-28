@@ -19,6 +19,7 @@ const hotItems = [{
   image:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011144949.png',
   rankImage:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_remen_tag_NO.3@3x.png'
 }]
+
 const HotItem = ({rank, rankImage, name, tag, color, tagColor, image})=>{
   return (
     <View className={styles.hotItem}>

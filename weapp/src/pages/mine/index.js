@@ -16,11 +16,11 @@ const Index = () =>{
                 </View>
                 <AtIcon value='chevron-right'></AtIcon>
             </View>
-            <View className={styles.value}>
+            <View className={styles.value}
+              onClick={()=>Taro.navigateTo({url:'/pages/myBaize/index'})}
+            >
                 <View className={styles.balance}>5100</View>
-                <View className={styles.seeMyBaize}
-                  onClick={()=>Taro.navigateTo({url:'/pages/myBaize/index'})}
-                >
+                <View className={styles.seeMyBaize}>
                     查看我的白泽星
                     <AtIcon value='chevron-right' color='#fff' size='16'></AtIcon>
                 </View>

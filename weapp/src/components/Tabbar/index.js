@@ -6,7 +6,7 @@ const Index = ({index=0}) =>{
     const tabs = [
         {name:'首页', url:'/pages/index/index', off:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/shouye_g@3x.png', on:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/shouye_b@3x.png'},
         {name:'问卷', url:'/pages/mine/index', off:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/wenjuan_g@3x.png', on:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/wenjuan_b@3x.png'},
-        {name:'任务', url:'/pages/mine/index', off:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/renwu_g@3x.png', on:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/renwu_b@3x.png'},
+        {name:'任务', url:'/pages/task/index', off:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/renwu_g@3x.png', on:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/renwu_b@3x.png'},
         {name:'我的', url:'/pages/mine/index', off:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/wode_g@3x.png', on:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/wode_b@3x.png'},
     ]
     return (

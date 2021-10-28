@@ -71,6 +71,30 @@
           "pathName": "pages/myBaize/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/myBaize/index",
+          "pathName": "pages/myBaize/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/myBaize/index",
+          "pathName": "pages/myBaize/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/divFLquestionnaire/index",
+          "pathName": "pages/divFLquestionnaire/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/task/index",
+          "pathName": "pages/task/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -1,7 +1,7 @@
 import {View } from '@tarojs/components'
 import styles from './index.module.less'
 
-const Index = ({children, onChange, value=1, className}) =>{
+const Index = ({className, children, onChange, value=1}) =>{
 
 
     const change = i =>{
@@ -16,13 +16,13 @@ const Index = ({children, onChange, value=1, className}) =>{
                 <View className={styles.tab + ' ' + (value==1?styles.on:'')}
                   onClick={()=>change(1)}
                 >
-                    规则
+                    我发布的任务
                     <View className={styles.line}></View>
                 </View>
                 <View className={styles.tab + ' ' + (value==2?styles.on:'')}
                   onClick={()=>change(2)}
                 >
-                    查看明细
+                    我参与的任务
                     <View className={styles.line}></View>
                 </View>
             </View>

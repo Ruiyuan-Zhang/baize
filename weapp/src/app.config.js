@@ -1,5 +1,6 @@
 export default {
   pages: [
+    'pages/welcome/index',
     'pages/index/index',
     'pages/modelList/index',
     'pages/selectSubmitFunction/index',
@@ -10,13 +11,18 @@ export default {
     'pages/mine/index',
     'pages/modelDesc/index',
     'pages/questionnaireList/index',
-    'pages/myBaize/index'
+    'pages/myBaize/index',
+    'pages/divFLquestionnaire/index',
+    'pages/task/index'
   ],
   tabBar: {
     custom:true,
     list: [{
       pagePath: "pages/index/index",
       text: "首页"
+    },{
+      pagePath: 'pages/task/index',
+      text: '任务'
     },{
       pagePath:'pages/mine/index',
       text:'我的'

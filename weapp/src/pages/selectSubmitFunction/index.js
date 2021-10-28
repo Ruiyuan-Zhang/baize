@@ -27,7 +27,9 @@ const index = () =>{
                             <Image className={styles.icon} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/issue_lianbang_muban_icon@3x.png'></Image>
                             从模板中创建
                         </View>
-                        <View className={styles.btn}>
+                        <View className={styles.btn}
+                          onClick={()=>Taro.navigateTo({url:'/pages/divFLquestionnaire/index'})}
+                        >
                             <Image className={styles.icon} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/issue_lianbang_zidingyi_icon@3x.png'></Image>
                             自定义创建
                         </View>
