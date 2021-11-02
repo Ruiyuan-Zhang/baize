@@ -6,34 +6,34 @@ import Tabs from './components/Tabs'
 import TaskItem from './components/TaskItem'
 import styles from './index.module.less'
 
+const Submits = () =>{
+    return(
+        <View className={styles.submits}>
+            <TaskItem />
+            <TaskItem />
+        </View>
+    )
+}
+
+const Joins = () =>{
+    return(
+        <View className={styles.joins}>
+            <TaskItem submit={false} />
+            <TaskItem submit={false} />
+            <TaskItem submit={false} />
+            <TaskItem submit={false} />
+            <TaskItem submit={false} />
+        </View> 
+    )
+}
+
 const Index = () =>{
+
     const [tab, setTab] = useState(1)
 
-
-    const Submits = () =>{
-        return(
-            <View className={styles.submits}>
-                <TaskItem />
-                <TaskItem />
-            </View>
-        )
-    }
-
-    const Joins = () =>{
-        return(
-            <View className={styles.joins}>
-                <TaskItem submit={false} />
-                <TaskItem submit={false} />
-                <TaskItem submit={false} />
-                <TaskItem submit={false} />
-                <TaskItem submit={false} />
-            </View> 
-        )
-    }
-    
     return (
         <View className={styles.index}>
-            <Tabs className={styles.tabs} value={tab} onChange={setTab}>
+            <Tabs className={styles.tabs} value={tab} onChange={x=>setTab(x)}>
                 <View className={styles.tasks}>
                   {tab==1?<Submits />:<Joins />}
                 </View>

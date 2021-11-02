@@ -15,6 +15,16 @@ export default {
     'pages/divFLquestionnaire/index',
     'pages/task/index'
   ],
+
+  subpackages:[
+    {
+      root: 'packageTask',
+      pages: [
+        'pages/taskSchedule/index'
+      ]
+    }
+  ],
+
   tabBar: {
     custom:true,
     list: [{

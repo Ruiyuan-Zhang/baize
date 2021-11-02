@@ -42,7 +42,7 @@
     "@tarojs/runtime": "3.2.13",
     "@tarojs/taro": "3.2.13",
     "@tensorflow/tfjs-backend-webgl": "^3.7.0",
-    "@tensorflow/tfjs-core": "^3.7.0",
+    "@tensorflow/tfjs-core": "^3.9.0",
     "@tensorflow/tfjs-layers": "^3.7.0",
     "echarts-taro3-react": "^1.0.13",
     "fetch-wechat": "^0.0.3",

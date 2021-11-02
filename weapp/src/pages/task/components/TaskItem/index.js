@@ -1,4 +1,5 @@
 import {View, Image} from '@tarojs/components'
+import Taro from '@tarojs/taro'
 import styles from './index.module.less'
 
 const Index = ({className, submit=true}) => {
@@ -36,7 +37,9 @@ const Index = ({className, submit=true}) => {
                 </>}
 
                 <View className={styles.line}></View>
-                <View className={styles.handle}>
+                <View className={styles.handle}
+                  onClick={()=>Taro.navigateTo({url:'/packageTask/pages/taskSchedule/index'})}
+                >
                     <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211028215836.png'></Image>
                     任务进展
                 </View>

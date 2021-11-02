@@ -95,6 +95,12 @@
           "pathName": "pages/task/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "packageTask/pages/taskSchedule/index",
+          "pathName": "packageTask/pages/taskSchedule/index",
+          "query": "",
+          "scene": null
         }
       ]
     }
