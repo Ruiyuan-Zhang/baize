@@ -13,14 +13,15 @@ export default {
     'pages/questionnaireList/index',
     'pages/myBaize/index',
     'pages/divFLquestionnaire/index',
-    'pages/task/index'
+    'pages/task/index',
   ],
 
   subpackages:[
     {
       root: 'packageTask',
       pages: [
-        'pages/taskSchedule/index'
+        'pages/taskSchedule/index',
+        'pages/myTaskSchedule/index',
       ]
     }
   ],

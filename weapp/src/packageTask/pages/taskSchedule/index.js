@@ -1,7 +1,8 @@
 import {View} from '@tarojs/components'
 import Chart from '../../components/chart'
 import NavBar from '@/components/NavBar'
-import { AtTimeline, AtSwitch } from 'taro-ui'
+import TimeLine from '@/components/TimeLine'
+import { AtSwitch } from 'taro-ui'
 import styles from './index.module.less'
 
 const Index = () =>{
@@ -21,27 +22,7 @@ const Index = () =>{
             <View className={styles.line}>
                 <View className={styles.title}>训练情况列表</View>
                 <View className={styles.content}>
-                    <AtTimeline 
-                      items={[
-                        { title: '刷牙洗脸' }, 
-                        { title: '吃早餐', color: 'green' }, 
-                        { title: '上班', color: 'red' }, 
-                        { title: '睡觉', color: 'yellow' },
-                        { title: '睡觉', color: 'yellow' },
-                        { title: '睡觉', color: 'yellow' },
-                        { title: '睡觉', color: 'yellow' },
-                        { title: '睡觉', color: 'yellow' },
-                        { title: '睡觉', color: 'yellow' },
-                        { title: '睡觉', color: 'yellow' },
-                        { title: '睡觉', color: 'yellow' },
-                        { title: '睡觉', color: 'yellow' },
-                        { title: '睡觉', color: 'yellow' },
-                        { title: '睡觉', color: 'yellow' },
-                        { title: '睡觉', color: 'yellow' },
-                        { title: '睡觉', color: 'yellow' },
-                        { title: '睡觉', color: 'yellow' },
-                      ]}
-                    />
+                    <TimeLine />
                 </View>
             </View>
             <View className={styles.handle}>
