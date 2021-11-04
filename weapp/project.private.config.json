@@ -101,6 +101,36 @@
           "pathName": "packageTask/pages/taskSchedule/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "packageTask/pages/myTaskSchedule/index",
+          "pathName": "packageTask/pages/myTaskSchedule/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageTask/pages/myLocalData/index",
+          "pathName": "packageTask/pages/myLocalData/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageTask/pages/addLocalData/index",
+          "pathName": "packageTask/pages/addLocalData/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageTask/pages/train/index",
+          "pathName": "packageTask/pages/train/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageTask/pages/dataPack/index",
+          "pathName": "packageTask/pages/dataPack/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

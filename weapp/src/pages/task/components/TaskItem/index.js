@@ -30,7 +30,9 @@ const Index = ({className, submit=true}) => {
                 </View>
                 {!submit&&<>
                     <View className={styles.line}></View>
-                    <View className={styles.handle}>
+                    <View className={styles.handle}
+                      onClick={()=>Taro.navigateTo({url:'/packageTask/pages/myLocalData/index'})}
+                    >
                         <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211028225529.png'></Image>
                         数据
                     </View>
@@ -38,7 +40,7 @@ const Index = ({className, submit=true}) => {
 
                 <View className={styles.line}></View>
                 <View className={styles.handle}
-                  onClick={()=>(!submit)?Taro.navigateTo({url:'/packageTask/pages/taskSchedule/index'}):Taro.navigateTo({url:'/packageTask/pages/myTaskSchedule/index'})}
+                  onClick={()=>(submit)?Taro.navigateTo({url:'/packageTask/pages/taskSchedule/index'}):Taro.navigateTo({url:'/packageTask/pages/myTaskSchedule/index'})}
                 >
                     <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211028215836.png'></Image>
                     任务进展

@@ -18,6 +18,7 @@ const config = {
     '@/config': resolve(__dirname, '..', 'src/config'),
     '@/utils': resolve(__dirname, '..', 'src/utils'),
     '@/common': resolve(__dirname, '..', 'src/common'),
+    '@/train': resolve(__dirname, '..', 'src/packageTask/train'),
   },
   defineConstants: {
   },

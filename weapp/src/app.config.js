@@ -22,6 +22,10 @@ export default {
       pages: [
         'pages/taskSchedule/index',
         'pages/myTaskSchedule/index',
+        'pages/myLocalData/index',
+        'pages/addLocalData/index',
+        'pages/train/index',
+        'pages/dataPack/index',
       ]
     }
   ],

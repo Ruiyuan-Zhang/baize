@@ -1,0 +1,86 @@
+page{
+    background-color: #f0f1f4;
+}
+
+.index{
+    padding-top: 193rpx;
+    .title{
+        font-size: 24rpx;
+        font-weight: 600;
+        color: #999999;
+        margin-left: 22rpx;
+        margin-bottom: 12rpx;
+    }
+    .data{
+        background-color: #ffffff;
+        padding-top: 24rpx;
+        .name{
+            font-size: 28rpx;
+            color: #000000;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 36rpx;
+        }
+        .localDatas{
+            padding: 0 48rpx;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            height: calc(100vh - 750rpx);
+            overflow-y: scroll;
+            border-bottom: 2rpx solid #DEDEDE;
+            padding-bottom: 44rpx;
+
+            .localData{
+                
+                width: 192rpx;
+                display: inline-flex;
+                flex-direction: column;
+                align-items: center;
+                image{
+                    width: 192rpx;
+                    height: 192rpx;
+                }
+                view{
+
+                }
+            }
+        }
+        .info{
+            font-size: 24rpx;
+            color: #000000;
+            font-weight: 500;
+            margin-left: 48rpx;
+            margin-top: 36rpx;
+            margin-bottom: 56rpx;
+
+        }
+        .addData{
+            font-size: 28rpx;
+            color: #0D2EF0;
+            border: 2rpx solid #0D2EF0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 88rpx;
+            margin: 0 40rpx;
+            image{
+                width: 32rpx;
+                height: 32rpx;
+                margin-right: 6rpx;
+            }
+        }
+        .train{
+            font-size: 28rpx;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 88rpx;
+            margin: 0 40rpx;
+            background: linear-gradient(90deg, #0D80EE 0%, #0D2EF0 100%);
+            margin-top: 20rpx;
+            margin-bottom: 40rpx;
+        }
+    }
+}
