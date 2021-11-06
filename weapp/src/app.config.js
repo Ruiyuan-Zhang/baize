@@ -26,6 +26,15 @@ export default {
         'pages/addLocalData/index',
         'pages/train/index',
         'pages/dataPack/index',
+        'pages/writeFLQuestionnaire/index',
+      ]
+    },{
+      root:'packageQuestion',
+      pages:[
+        'pages/divQuestionnaire/index',
+        'pages/chooseQuestion/index',
+        'pages/inputQuestion/index',
+        'pages/imageQuestion/index',
       ]
     }
   ],

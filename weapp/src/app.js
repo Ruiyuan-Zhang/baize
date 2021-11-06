@@ -25,6 +25,7 @@ import "taro-ui/dist/style/components/search-bar.scss";
 import "taro-ui/dist/style/components/image-picker.scss";
 import "taro-ui/dist/style/components/tabs.scss";
 import "taro-ui/dist/style/components/modal.scss";
+import "taro-ui/dist/style/components/grid.scss";
 
 class App extends Component {
 

@@ -38,7 +38,9 @@ const index = () =>{
                 <View className={styles.old + " " + styles.method}>
                     <View className={styles.name}>普通问卷</View>
                     <View className={styles.content}>
-                        <View className={styles.btn}>
+                        <View className={styles.btn}
+                          onClick={()=>Taro.navigateTo({url:'/packageQuestion/pages/divQuestionnaire/index'})}
+                        >
                             <Image className={styles.icon} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/issue_putong_muban_icon.png'></Image>
                             从模板中创建
                         </View>

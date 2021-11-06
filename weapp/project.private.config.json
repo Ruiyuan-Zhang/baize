@@ -131,6 +131,24 @@
           "pathName": "packageTask/pages/dataPack/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "packageQuestion/pages/divQuestionnaire/index",
+          "pathName": "packageQuestion/pages/divQuestionnaire/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageQuestion/pages/chooseQuestion/index",
+          "pathName": "packageQuestion/pages/chooseQuestion/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageTask/pages/writeFLQuestionnaire/index",
+          "pathName": "packageTask/pages/writeFLQuestionnaire/index",
+          "query": "",
+          "scene": null
         }
       ]
     }
