@@ -6,7 +6,10 @@
 package task
 
 import (
+	_ "container/list"
+	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/qifengzhang007/sql_res_to_tree"
 	"go.uber.org/zap"
@@ -14,6 +17,7 @@ import (
 	"goskeleton/app/model"
 	"goskeleton/app/utils/data_bind"
 	"strconv"
+	_ "strings"
 )
 
 func CreatTaskFactory(sqlType string) *TaskModel {
@@ -63,6 +67,14 @@ func (c *TaskModel) List(limitStart, limit int) (list []TaskModelView) {
 		FROM tb_task as t, tb_category as c where t.category_id =c.id LIMIT ?, ?;
 	`
 	if res := c.Raw(sql, limitStart, limit).Find(&list); res.Error != nil {
+		//println(list)
+		//types := reflect.TypeOf(list)
+		//field0 := types.Elem().Field(0)
+		//
+		//all_vale := types.Elem().String()
+		//
+		//fmt.Printf(field0.Tag.Get("json"))
+		//fmt.Printf(all_vale)
 		variable.ZapLog.Error("TaskModel 查询出错", zap.Error(res.Error))
 	}
 	return
@@ -70,7 +82,6 @@ func (c *TaskModel) List(limitStart, limit int) (list []TaskModelView) {
 
 // 查询任务列表
 func (c *TaskModel) Select(limitStart, limit int, kind, categoryId, keyword string) (list []TaskModelView) {
-
 	sql := `
 		SELECT  c.name as category_name, t.*
 		FROM tb_task as t, tb_category as c 
@@ -85,6 +96,7 @@ func (c *TaskModel) Select(limitStart, limit int, kind, categoryId, keyword stri
 	sql += " LIMIT ?, ?;"
 
 	if res := c.Raw(sql, limitStart, limit).Find(&list); res.Error != nil {
+		print(list)
 		variable.ZapLog.Error("TaskModel 查询出错", zap.Error(res.Error))
 		return nil
 	} else {
@@ -93,51 +105,96 @@ func (c *TaskModel) Select(limitStart, limit int, kind, categoryId, keyword stri
 }
 
 // 查询参与任务列表
-func (c *TaskModel) ParticipateSelect(limitStart, limit int, kind, categoryId, keyword string) (list []TaskModelView) {
+func (c *TaskModel) ParticipateSelect(limitStart, limit int, kind, categoryId, keyword string, userName string) (task_list []TaskModelView) { //这里的list是变量名，不是数据结构,to do
 
+	// to do:传入用户名
+	var user_name = "11"
+	// 查询任务表中publish_user_id为登录的user_id的任务列表
 	sql := `
-		SELECT  c.name as category_name, t.*
-		FROM tb_task as t, tb_category as c 
-		where t.category_id =c.id
+		SELECT  t_p_u.task_id
+		FROM tb_task_participate_user as t_p_u
 	`
-	if categoryId != "" {
-		sql += " and c.id = " + categoryId
-	}
-	if keyword != "" {
-		sql += " and ( t.name like '%" + keyword + "%' or t.description like '%" + keyword + "%' or t.id like '%" + keyword + "%' or c.name like '%" + keyword + "%')"
-	}
-	sql += " LIMIT ?, ?;"
+	sql += "where t_p_u.task_participate_user_name = '" + user_name + "'"
 
-	if res := c.Raw(sql, limitStart, limit).Find(&list); res.Error != nil {
-		variable.ZapLog.Error("TaskModel 查询出错", zap.Error(res.Error))
-		return nil
-	} else {
-		return
+	var task_id_list []TaskUserModelView
+	if res := c.Raw(sql, limitStart, limit).Find(&task_id_list); res.Error != nil {
+		variable.ZapLog.Error("TaskUserModel 查询出错", zap.Error(res.Error))
 	}
+
+	if task_id_list != nil {
+		for i := 0; i < len(task_id_list); i++ {
+			sql = `
+				SELECT  t.*
+				FROM tb_task as t
+			`
+			sql += string("where t.Id =" + Strval(task_id_list[i].TaskId))
+			task := TaskModelView{
+				"test_id",
+				"test_caterotyname",
+				"test_categoryid",
+				"test_name",
+				"test_description",
+				"test_file",
+				"test_initmodelfile",
+				"test_superparams",
+				123,
+				"test_time",
+				"test_tu",
+			}
+			c.Raw(sql, limitStart, limit).Find(&task)
+			task_list = append(task_list, task)
+		}
+	}
+	return task_list
 }
 
-// 查询发布任务列表
-func (c *TaskModel) PublishSelect(limitStart, limit int, kind, categoryId, keyword string) (list []TaskModelView) {
+//查询发布任务列表
+func (c *TaskModel) PublishSelect(limitStart, limit int, kind, categoryId, keyword string, userName string) (task_list []TaskModelView) {
 
+	// to do:传入用户名
+	userName = "11"
+	//查询任务表中publish_user_id为登录的user_id的任务列表
 	sql := `
-		SELECT  c.name as category_name, t.*
-		FROM tb_task as t, tb_category as c 
-		where t.category_id =c.id
+		SELECT  t_u.id
+		FROM tb_task_user as t_u
 	`
-	if categoryId != "" {
-		sql += " and c.id = " + categoryId
-	}
-	if keyword != "" {
-		sql += " and ( t.name like '%" + keyword + "%' or t.description like '%" + keyword + "%' or t.id like '%" + keyword + "%' or c.name like '%" + keyword + "%')"
-	}
-	sql += " LIMIT ?, ?;"
+	//sql += "where t_u.user_name =" + userName
+	sql += "where t_u.user_name = '" + userName + "'"
 
-	if res := c.Raw(sql, limitStart, limit).Find(&list); res.Error != nil {
-		variable.ZapLog.Error("TaskModel 查询出错", zap.Error(res.Error))
-		return nil
-	} else {
-		return
+	var task_id_list []TaskUserModelView
+	res := c.Raw(sql, limitStart, limit).Find(&task_id_list)
+	if res.Error != nil {
+		variable.ZapLog.Error("TaskUserModel 查询出错", zap.Error(res.Error))
 	}
+	fmt.Println("task_id_list" + Strval(task_id_list))
+	// 每查寻一个task，加入到task列表中
+	if task_id_list != nil {
+		for i := 0; i < len(task_id_list); i++ {
+			sql = `
+				SELECT  t.*
+				FROM tb_task as t
+			`
+			sql += string("where t.Id =" + Strval(task_id_list[i].TaskId))
+			task := TaskModelView{
+				"test_id",
+				"test_caterotyname",
+				"test_categoryid",
+				"test_name",
+				"test_description",
+				"test_file",
+				"test_initmodelfile",
+				"test_superparams",
+				123,
+				"test_time",
+				"test_tu",
+			}
+			c.Raw(sql, limitStart, limit).Find(&task)
+			task_list = append(task_list, task)
+		}
+	}
+
+	fmt.Println(task_list)
+	return task_list
 }
 
 // 任务详情信息查询
@@ -184,4 +241,63 @@ func (t *TaskModel) DetailWithFormat(id string) (TaskModelViewWithDataFormat, er
 		variable.ZapLog.Error("DetailWithFormat 查询出错", zap.Error(res.Error))
 		return TaskModelViewWithDataFormat{}, errors.New("")
 	}
+}
+
+// Strval 获取变量的字符串值
+// 浮点型 3.0将会转换成字符串3, "3"
+// 非数值或字符类型的变量将会被转换成JSON格式字符串
+func Strval(value interface{}) string {
+	// interface 转 string
+	var key string
+	if value == nil {
+		return key
+	}
+
+	switch value.(type) {
+	case float64:
+		ft := value.(float64)
+		key = strconv.FormatFloat(ft, 'f', -1, 64)
+	case float32:
+		ft := value.(float32)
+		key = strconv.FormatFloat(float64(ft), 'f', -1, 64)
+	case int:
+		it := value.(int)
+		key = strconv.Itoa(it)
+	case uint:
+		it := value.(uint)
+		key = strconv.Itoa(int(it))
+	case int8:
+		it := value.(int8)
+		key = strconv.Itoa(int(it))
+	case uint8:
+		it := value.(uint8)
+		key = strconv.Itoa(int(it))
+	case int16:
+		it := value.(int16)
+		key = strconv.Itoa(int(it))
+	case uint16:
+		it := value.(uint16)
+		key = strconv.Itoa(int(it))
+	case int32:
+		it := value.(int32)
+		key = strconv.Itoa(int(it))
+	case uint32:
+		it := value.(uint32)
+		key = strconv.Itoa(int(it))
+	case int64:
+		it := value.(int64)
+		key = strconv.FormatInt(it, 10)
+	case uint64:
+		it := value.(uint64)
+		key = strconv.FormatUint(it, 10)
+	case string:
+		key = value.(string)
+	case []byte:
+		key = string(value.([]byte))
+	default:
+		newValue, _ := json.Marshal(value)
+		key = string(newValue)
+	}
+
+	return key
 }

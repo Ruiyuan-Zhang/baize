@@ -6,7 +6,6 @@ import (
 	"goskeleton/app/global/consts"
 	"goskeleton/app/global/variable"
 	"goskeleton/app/http/controller/chaptcha"
-	"goskeleton/app/http/middleware/authorization"
 	"goskeleton/app/http/middleware/cors"
 	validatorFactory "goskeleton/app/http/validator/core/factory"
 	"io"
@@ -79,7 +78,7 @@ func InitWebRouter() *gin.Engine {
 		}
 
 		// 【需要token+Casbin】中间件验证的路由
-		backend.Use(authorization.CheckTokenAuth())
+		//backend.Use(authorization.CheckTokenAuth())
 		{
 			// 用户组路由
 			users := backend.Group("users/")
@@ -106,9 +105,9 @@ func InitWebRouter() *gin.Engine {
 			Questionaire := backend.Group("questionaire/")
 			{
 				// 我参与的问卷列表
-				Questionaire.GET("myParticipateQuestionaire", validatorFactory.Create(consts.ValidatorPrefix+"MyParticipateQuestionaire"))
+				Questionaire.GET("myParticipateQuestionaire", validatorFactory.Create(consts.ValidatorPrefix+"MyParticipateQuestionaireList"))
 				// 我参与的问卷列表
-				Questionaire.GET("myPublishQuestionaire", validatorFactory.Create(consts.ValidatorPrefix+"MyPublishQuestionaire"))
+				Questionaire.GET("myPublishQuestionaire", validatorFactory.Create(consts.ValidatorPrefix+"MyPublishQuestionaireList"))
 				// 添加问卷
 				Questionaire.POST("add", validatorFactory.Create(consts.ValidatorPrefix+"QuestionaireAdd"))
 				// 问卷列表
@@ -120,7 +119,6 @@ func InitWebRouter() *gin.Engine {
 				// 问卷详情 包含格式
 				Questionaire.GET("detailWithFormat", validatorFactory.Create(consts.ValidatorPrefix+"QuestionaireDetailWithFormat"))
 			}
-
 
 			// 联邦学习任务分类管理
 			category := backend.Group("category/")

@@ -13,7 +13,8 @@ import (
 	"goskeleton/app/http/validator/web/users"
 )
 
-// 各个业务模块验证器必须进行注册（初始化），程序启动时会自动加载到容器
+// 各个业务模块验
+//证器必须进行注册（初始化），程序启动时会自动加载到容器
 func WebRegisterValidator() {
 	//创建容器
 	containers := container.CreateContainersFactory()
@@ -61,7 +62,6 @@ func WebRegisterValidator() {
 		key = consts.ValidatorPrefix + "MyPublishQuestionaireList"
 		containers.Set(key, questionaire.MyPublishQuestionaireList{})
 
-
 		// 问卷添加
 		key = consts.ValidatorPrefix + "QuestionaireAdd"
 		containers.Set(key, questionaire.Add{})
@@ -78,7 +78,6 @@ func WebRegisterValidator() {
 		key = consts.ValidatorPrefix + "QuestionaireDetailWithFormat"
 		containers.Set(key, questionaire.DetailWithFormat{})
 	}
-
 
 	// 任务管理
 	{

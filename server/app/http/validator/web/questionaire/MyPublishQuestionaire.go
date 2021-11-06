@@ -13,18 +13,18 @@ type MyPublishQuestionaireList struct {
 	common_data_type.Page
 }
 
-func (t List) CheckPublishListParams (c * gin.Context){
-	if err:=c.ShouldBind(&t);err!=nil{
-		errs:=gin.H{
-			"tips":"task 参数校验失败，参数不符合规定，page的值(>0)、limit的值(>0)",
-			"err":err.Error(),
+func (t MyPublishQuestionaireList) CheckParams(c *gin.Context) {
+	if err := c.ShouldBind(&t); err != nil {
+		errs := gin.H{
+			"tips": "task 参数校验失败，参数不符合规定，page的值(>0)、limit的值(>0)",
+			"err":  err.Error(),
 		}
-		response.ErrorParam(c,errs)
+		response.ErrorParam(c, errs)
 		return
 	}
-	if ec := data_transfer.DataAddContext(t,consts.ValidatorPrefix,c);ec ==nil{
-		response.ErrorSystem(c,"task list 表单验证器json化失败","")
-	}else {
+	if ec := data_transfer.DataAddContext(t, consts.ValidatorPrefix, c); ec == nil {
+		response.ErrorSystem(c, "task list 表单验证器json化失败", "")
+	} else {
 		(&task.Task{}).List(ec)
 	}
 }

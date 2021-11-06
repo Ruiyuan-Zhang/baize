@@ -6,6 +6,7 @@
 package task
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"goskeleton/app/global/consts"
 	"goskeleton/app/model/task"
@@ -45,8 +46,11 @@ func (t *Task) List(context *gin.Context) {
 func (t *Task) PublishList(context *gin.Context) {
 	var limit = context.GetFloat64(consts.ValidatorPrefix + "limit")
 	var limitStart = (context.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
-	//to do：任务表应添加任务发布者的publish_user_id，查询任务表中publish_user_id为登录的用户id的任务列表
-	list := task.CreatTaskFactory("").List(int(limitStart), int(limit))
+	var kind = context.GetString(consts.ValidatorPrefix + "kind")
+	var categoryId = context.GetString(consts.ValidatorPrefix + "categoryId")
+	var keyword = context.GetString(consts.ValidatorPrefix + "keyword")
+	var userName = context.GetString(consts.ValidatorPrefix + "user_name")
+	list := task.CreatTaskFactory("").PublishSelect(int(limitStart), int(limit), kind, categoryId, keyword, userName)
 	if list != nil {
 		response.Success(context, consts.CurdStatusOkMsg, gin.H{
 			"list": list,
@@ -55,15 +59,17 @@ func (t *Task) PublishList(context *gin.Context) {
 		response.Fail(context, consts.CurdSelectFailCode, consts.CurdSelectFailMsg, "")
 	}
 }
-
-
 
 // 获取我参与的任务列表
-func (t *Task) ParticipateQuestionaireList(context *gin.Context) {
+func (t *Task) ParticipateList(context *gin.Context) {
+	fmt.Println("111111111111")
 	var limit = context.GetFloat64(consts.ValidatorPrefix + "limit")
 	var limitStart = (context.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
-	//to do：新建一个任务参与信息主体表，查询任务参与主体表中，participate_user_id为登录用户id的任务列表
-	list := task.CreatTaskFactory("").List(int(limitStart), int(limit))
+	var kind = context.GetString(consts.ValidatorPrefix + "kind")
+	var categoryId = context.GetString(consts.ValidatorPrefix + "categoryId")
+	var keyword = context.GetString(consts.ValidatorPrefix + "keyword")
+	var user_name = context.GetString(consts.ValidatorPrefix + "user_name")
+	list := task.CreatTaskFactory("").ParticipateSelect(int(limitStart), int(limit), kind, categoryId, keyword, user_name)
 	if list != nil {
 		response.Success(context, consts.CurdStatusOkMsg, gin.H{
 			"list": list,
@@ -72,7 +78,6 @@ func (t *Task) ParticipateQuestionaireList(context *gin.Context) {
 		response.Fail(context, consts.CurdSelectFailCode, consts.CurdSelectFailMsg, "")
 	}
 }
-
 
 // 查询任务
 func (t *Task) Select(context *gin.Context) {
