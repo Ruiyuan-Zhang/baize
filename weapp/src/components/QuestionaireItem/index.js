@@ -8,6 +8,8 @@ const index = ({id, src, name, category, info, author, see, type='questionnaire'
     const jump = ()=>{
         if (type === 'model'){
             Taro.navigateTo({url:`/pages/modelDesc/index?id=${id}&title=${name}`})
+        }else {
+            Taro.navigateTo({url:'/packageTask/pages/writeFLQuestionnaire/index'})
         }
     }
     return (
