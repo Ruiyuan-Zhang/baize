@@ -11,12 +11,14 @@ const Index = () =>{
 
     useEffect(()=>{
         (async function(){
+            const modelUrl = 'http://192.168.24.33:5000/model.json'
+            // const modelUrl = 'https://gflmini.zju-zry.club/file/models/globalModelSameDir/M0cOW9Foy2URn7ELV3H5/model.json'
             console.log('开始识别')
             let res = await predict({
                 width: 28,
                 height: 28,
                 image, 
-                modelUrl: 'https://gflmini.zju-zry.club/file/models/globalModelSameDir/M0cOW9Foy2URn7ELV3H5/model.json'
+                modelUrl,
             })
             setValue(res)
         })()

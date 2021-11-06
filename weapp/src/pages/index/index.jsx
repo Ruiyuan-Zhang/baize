@@ -1,64 +1,63 @@
 import { View, Input, Image } from '@tarojs/components'
 import { AtButton,AtDivider } from 'taro-ui'
-import QuestionaireItem from '@/components/QuestionaireItem'
 import { Swiper, SwiperItem } from '@tarojs/components'
+import Taro, { clearStorage, useDidShow } from '@tarojs/taro'
+import { useEffect, useState } from 'react'
 import Tail from '@/components/Tail'
 import Tabbar from '@/components/Tabbar'
-import Taro, { clearStorage } from '@tarojs/taro'
+import QuestionaireItem from '@/components/QuestionaireItem'
+import request from '@/utils/request'
 import styles from './index.module.less'
 
-const hotItems = [{
-  rank: 0, name: '手写数字识别', tag:'机器学习', tagColor:'#fbf0d1',color:'#eeb13a',
-  image:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011144205.png',
-  rankImage:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_remen_tag_NO.1@3x.png'
-},{
-  rank: 1, name: '手势模型识别', tag:'计算机视觉', tagColor:'#cbefde',color:'#00af5d',
-  image:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011144908.png',
-  rankImage:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_remen_tag_NO.2@3x.png'
-},{
-  rank: 2, name: '猫狗分类模型', tag:'机器学习', tagColor:'#fbf0d1',color:'#eeb13a',
-  image:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011144949.png',
-  rankImage:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_remen_tag_NO.3@3x.png'
-}]
-
-const HotItem = ({rank, rankImage, name, tag, color, tagColor, image})=>{
-  return (
-    <View className={styles.hotItem}>
-      <Image className={styles.rankImage} src={rankImage}></Image>
-      <Image className={styles.hotItemImage} src={image}></Image>
-      <View className={styles.hotItemName}>{name}</View>
-      <View className={styles.tag} style={{background:tagColor, color}}>{tag}</View>
-    </View>
-  )
-}
 
 
-const questionaireItems = [{
-  id:'876576456',
-  src:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011155123.png', name:'手写数字识别', category:'联邦学习', info:'当给定一个数字时，在所给定的模版中逐一通过像素去比对，找出最相近的模版，并返回这个模版的数值标签，这个标签就是这个数字的值。事与愿违，由于手写数字千变万化，比如6，8，9这3个数字在进行像素比对时，所给测试数字由于大小形状问题，造成容易搞混的的情况。', 
-  author:'浙江大学', see:123
-},{
-  id:'876576356',
-  src:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011155123.png', name:'手写数字识别', category:'联邦学习', info:'当给定一个数字时，在所给定的模版中逐一通过像素去比对，找出最相近的模版，并返回这个模版的数值标签，这个标签就是这个数字的值。事与愿违，由于手写数字千变万化，比如6，8，9这3个数字在进行像素比对时，所给测试数字由于大小形状问题，造成容易搞混的的情况。', 
-  author:'浙江大学', see:123
-},{
-  id:'870576456',
-  src:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011155123.png', name:'手写数字识别', category:'联邦学习', info:'当给定一个数字时，在所给定的模版中逐一通过像素去比对，找出最相近的模版，并返回这个模版的数值标签，这个标签就是这个数字的值。事与愿违，由于手写数字千变万化，比如6，8，9这3个数字在进行像素比对时，所给测试数字由于大小形状问题，造成容易搞混的的情况。', 
-  author:'浙江大学', see:123
-},{
-  id:'875576456',
-  src:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011155123.png', name:'手写数字识别', category:'联邦学习', info:'当给定一个数字时，在所给定的模版中逐一通过像素去比对，找出最相近的模版，并返回这个模版的数值标签，这个标签就是这个数字的值。事与愿违，由于手写数字千变万化，比如6，8，9这3个数字在进行像素比对时，所给测试数字由于大小形状问题，造成容易搞混的的情况。', 
-  author:'浙江大学', see:123
-},]
+const Index = () =>{
+  const hotItems = [{
+    rank: 0, name: '手写数字识别', tag:'机器学习', tagColor:'#fbf0d1',color:'#eeb13a',
+    image:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011144205.png',
+    rankImage:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_remen_tag_NO.1@3x.png'
+  },{
+    rank: 1, name: '手势模型识别', tag:'计算机视觉', tagColor:'#cbefde',color:'#00af5d',
+    image:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011144908.png',
+    rankImage:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_remen_tag_NO.2@3x.png'
+  },{
+    rank: 2, name: '猫狗分类模型', tag:'机器学习', tagColor:'#fbf0d1',color:'#eeb13a',
+    image:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211011144949.png',
+    rankImage:'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_remen_tag_NO.3@3x.png'
+  }]
+  
+  const HotItem = ({rank, rankImage, name, tag, color, tagColor, image})=>{
+    return (
+      <View className={styles.hotItem}>
+        <Image className={styles.rankImage} src={rankImage}></Image>
+        <Image className={styles.hotItemImage} src={image}></Image>
+        <View className={styles.hotItemName}>{name}</View>
+        <View className={styles.tag} style={{background:tagColor, color}}>{tag}</View>
+      </View>
+    )
+  }
+  
+  const swiperImages = [
+    'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106164938.png',
+    'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106165106.png',
+    'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106165150.png',
+    'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106165204.png',
+  ]
 
-const swiperImages = [
-  'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106164938.png',
-  'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106165106.png',
-  'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106165150.png',
-  'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106165204.png',
-]
+  const [questionaireItems, setQuestionaireItems] = useState([])
+  useDidShow(()=>{
+    (async function(){
+      let res = await request({
+        url: '/v1/admin/task/list?page=1&limit=10',
+        method: 'get'
+      })
+      if (res instanceof Error) return
+      console.log(res)
+      setQuestionaireItems(res.list)
+      // setList(res.list)
+    })()
+  },[])
 
-const index = () =>{
   return (
   <View className={styles.index}>
     <View className={styles.header}>
@@ -113,6 +112,8 @@ const index = () =>{
           {hotItems.map(hi=><HotItem key={hi.rank} {...hi}></HotItem>)}
         </View>
     </View>
+
+    {/* 今日份有趣问卷 */}
     <View className={styles.fun}>
         <View className={styles.title}>
           <Image className={styles.titleIcon} mode='heightFix' src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/wenjuan_title@3x.png'></Image>
@@ -137,4 +138,4 @@ const index = () =>{
   )
 }
 
-export default index
+export default Index

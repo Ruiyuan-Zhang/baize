@@ -13,3 +13,4 @@ fileServer/tests/
 fileServer/node_modules/
 tensorFlowExperiment/node.js/node/node_modules
 testData/mnist
+test/
