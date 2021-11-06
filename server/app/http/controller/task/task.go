@@ -6,7 +6,6 @@
 package task
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"goskeleton/app/global/consts"
 	"goskeleton/app/model/task"
@@ -62,7 +61,6 @@ func (t *Task) PublishList(context *gin.Context) {
 
 // 获取我参与的任务列表
 func (t *Task) ParticipateList(context *gin.Context) {
-	fmt.Println("111111111111")
 	var limit = context.GetFloat64(consts.ValidatorPrefix + "limit")
 	var limitStart = (context.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
 	var kind = context.GetString(consts.ValidatorPrefix + "kind")
