@@ -20,7 +20,7 @@ type Questionaire struct {
 
 // 添加一个问卷
 func (t *Questionaire) Add() {
-	// to do：前端传过来问卷的各个参数
+	// 前端传过来问卷的各个参数
 	questionaire_example := questionaire.QuestionaireModel{
 		Id:            rand.String(10),
 		Title:         "title",
