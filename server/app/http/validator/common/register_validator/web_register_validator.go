@@ -5,6 +5,7 @@ import (
 	"goskeleton/app/global/consts"
 	"goskeleton/app/http/validator/common/upload_files"
 	"goskeleton/app/http/validator/common/websocket"
+	"goskeleton/app/http/validator/web/baizeStar"
 	"goskeleton/app/http/validator/web/category"
 	"goskeleton/app/http/validator/web/data_format"
 	"goskeleton/app/http/validator/web/model"
@@ -77,6 +78,25 @@ func WebRegisterValidator() {
 		// 问卷详情 包含格式
 		key = consts.ValidatorPrefix + "QuestionaireDetailWithFormat"
 		containers.Set(key, questionaire.DetailWithFormat{})
+	}
+
+	// 白泽星管理
+	{
+		// 白泽星添加
+		key = consts.ValidatorPrefix + "BaizeStarAdd"
+		containers.Set(key, baizeStar.Add{})
+		// 白泽星列表
+		key = consts.ValidatorPrefix + "BaizeStarList"
+		containers.Set(key, baizeStar.List{})
+		// 白泽星查询
+		key = consts.ValidatorPrefix + "BaizeStarSelect"
+		containers.Set(key, baizeStar.Select{})
+		// 白泽星详情
+		key = consts.ValidatorPrefix + "BaizeStarDetail"
+		containers.Set(key, baizeStar.Detail{})
+		// 白泽星详情 包含格式
+		key = consts.ValidatorPrefix + "BaizeStarDetailWithFormat"
+		containers.Set(key, baizeStar.DetailWithFormat{})
 	}
 
 	// 任务管理

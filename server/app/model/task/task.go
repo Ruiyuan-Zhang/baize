@@ -63,7 +63,7 @@ func (t *TaskModel) InsertData(c *gin.Context) *TaskModel {
 // 查询任务列表
 func (c *TaskModel) List(limitStart, limit int) (list []TaskModelView) {
 	sql := `
-		SELECT  c.name as category_name, t.*
+		SELECT  t.*
 		FROM tb_task as t, tb_category as c where t.category_id =c.id LIMIT ?, ?;
 	`
 	if res := c.Raw(sql, limitStart, limit).Find(&list); res.Error != nil {
@@ -75,7 +75,7 @@ func (c *TaskModel) List(limitStart, limit int) (list []TaskModelView) {
 // 查询任务列表
 func (c *TaskModel) Select(limitStart, limit int, kind, categoryId, keyword string) (list []TaskModelView) {
 	sql := `
-		SELECT  c.name as category_name, t.*
+		SELECT  t.*
 		FROM tb_task as t, tb_category as c 
 		where t.category_id =c.id
 	`
@@ -97,15 +97,12 @@ func (c *TaskModel) Select(limitStart, limit int, kind, categoryId, keyword stri
 
 // 查询参与任务列表
 func (c *TaskModel) ParticipateSelect(limitStart, limit int, userName string) (task_list []TaskModelView) { //这里的list是变量名，不是数据结构,to do
-
-	// to do:传入用户名
-	var user_name = "11"
 	// 查询任务表中publish_user_id为登录的user_id的任务列表
 	sql := `
 		SELECT  t_p_u.task_id
 		FROM tb_task_participate_user as t_p_u
 	`
-	sql += "where t_p_u.task_participate_user_name = '" + user_name + "'"
+	sql += "where t_p_u.task_participate_user_name = '" + userName + "'"
 
 	var task_id_list []TaskUserModelView
 	if res := c.Raw(sql, limitStart, limit).Find(&task_id_list); res.Error != nil {
@@ -141,15 +138,11 @@ func (c *TaskModel) ParticipateSelect(limitStart, limit int, userName string) (t
 
 //查询发布任务列表
 func (c *TaskModel) PublishSelect(limitStart, limit int, userName string) (task_list []TaskModelView) {
-
-	// to do:传入用户名
-	userName = "11"
 	//查询任务表中publish_user_id为登录的user_id的任务列表
 	sql := `
 		SELECT  t_u.id
 		FROM tb_task_user as t_u
 	`
-	//sql += "where t_u.user_name =" + userName
 	sql += "where t_u.user_name = '" + userName + "'"
 
 	var task_id_list []TaskUserModelView
@@ -289,6 +282,5 @@ func Strval(value interface{}) string {
 		newValue, _ := json.Marshal(value)
 		key = string(newValue)
 	}
-
 	return key
 }

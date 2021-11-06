@@ -70,8 +70,8 @@ func (t *QuestionaireModel) InsertData(tmp QuestionaireModel) *QuestionaireModel
 // 查询问卷列表
 func (c *QuestionaireModel) List(limitStart, limit int) (list []QuestionaireModelView) {
 	sql := `
-		SELECT  c.name as category_name, t.*
-		FROM tb_questionaire as t, tb_category as c;
+		SELECT  t.*
+		FROM tb_questionaire as t;
 	`
 	if res := c.Raw(sql, limitStart, limit).Find(&list); res.Error != nil {
 		variable.ZapLog.Error("QuestionaireModel 查询出错", zap.Error(res.Error))
@@ -83,7 +83,7 @@ func (c *QuestionaireModel) List(limitStart, limit int) (list []QuestionaireMode
 func (c *QuestionaireModel) Select(limitStart, limit int, kind, categoryId, keyword string) (list []QuestionaireModelView) {
 
 	sql := `
-		SELECT  c.name as category_name, t.*
+		SELECT t.*
 		FROM tb_questionaire as t, tb_category as c
 	`
 	sql += " LIMIT ?, ?;"
@@ -98,7 +98,7 @@ func (c *QuestionaireModel) Select(limitStart, limit int, kind, categoryId, keyw
 // 问卷详情信息查询
 func (t *QuestionaireModel) Detail(id string) (tv QuestionaireModelView, err error) {
 	sql := `
-		SELECT  c.name as category_name, t.*
+		SELECT  t.*
 		FROM tb_questionaire as t, tb_category as c where t.category_id =c.id and t.questionaire_id = ?;
 	`
 	if res := t.Raw(sql, id).Take(&tv); res.Error != nil {
@@ -224,7 +224,7 @@ func (c *QuestionaireModel) PublishSelect(limitStart, limit int, userName string
 // 问卷详情信息查询 包含format信息
 func (t *QuestionaireModel) DetailWithFormat(id string) (QuestionaireModelViewWithDataFormat, error) {
 	sql := `
-		SELECT  c.name as category_name, t.*,
+		SELECT  t.*,
 		d.id as data_format_id, d.type as data_format_type, d.name as data_format_name, 
 		d.size as data_format_size, d.questionaire_id as data_format_questionaire_id,
 		d.english_name as data_format_english_name,

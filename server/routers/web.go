@@ -154,6 +154,21 @@ func InitWebRouter() *gin.Engine {
 
 			}
 
+			// 白泽星管理
+			baizeStar := backend.Group("baizeStar/")
+			{
+				// 添加白泽星
+				baizeStar.POST("add", validatorFactory.Create(consts.ValidatorPrefix+"BaizeStarAdd"))
+				// 白泽星列表
+				baizeStar.GET("list", validatorFactory.Create(consts.ValidatorPrefix+"BaizeStarList"))
+				// 白泽星查询
+				baizeStar.GET("select", validatorFactory.Create(consts.ValidatorPrefix+"BaizeStarSelect"))
+				// 白泽星详情
+				baizeStar.GET("detail", validatorFactory.Create(consts.ValidatorPrefix+"BaizeStarDetail"))
+				// 白泽星详情 包含格式
+				baizeStar.GET("detailWithFormat", validatorFactory.Create(consts.ValidatorPrefix+"BaizeStarDetailWithFormat"))
+			}
+
 			// 数据格式管理
 			dataFormat := backend.Group("dataFormat/")
 			{
