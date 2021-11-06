@@ -1,3 +1,11 @@
+/**
+ * @Author: ModestYjx
+ * @Description:
+ * @File:  questionaire_user
+ * @Version: 1.0.0
+ * @Date: 2021/11/6 14:44
+ */
+
 package questionaire
 
 import (
@@ -19,11 +27,30 @@ func CreatQuestionaireFactory(sqlType string) *QuestionaireModel {
 // 我在这里犯了一个错误，在struct中的属性，严格区分首字母大小写，大写为公有属性，外面可以访问到，小写为私有，外面访问不到。
 type QuestionaireModel struct {
 	model.BaseModel
-	Id                string `json:"id"`
-	Title             string `json:"title"`
-	TemplateIntro     string `json:"templateIntro"`
-	Question1         string `json:"question_1"`
-	Question2         string `json:"question_2"`
+	Id            string `json:"id"`
+	Title         string `json:"title"`
+	TemplateIntro string `json:"templateIntro"`
+	Question1     string `json:"question_1"`
+	Question2     string `json:"question_2"`
+	Question3     string `json:"question_3"`
+	Question4     string `json:"question_4"`
+	Question5     string `json:"question_5"`
+	Question6     string `json:"question_6"`
+	Question7     string `json:"question_7"`
+	Question8     string `json:"question_8"`
+	Question9     string `json:"question_9"`
+	Question10    string `json:"question_10"`
+
+	Answer1           string `json:"answer_1"`
+	Answer2           string `json:"answer_2"`
+	Answer3           string `json:"answer_3"`
+	Answer4           string `json:"answer_4"`
+	Answer5           string `json:"answer_5"`
+	Answer6           string `json:"answer_6"`
+	Answer7           string `json:"answer_7"`
+	Answer8           string `json:"answer_8"`
+	Answer9           string `json:"answer_9"`
+	Answer10          string `json:"answer_10"`
 	InitModelFile     string `json:"initModelFile"`
 	SuperParams       string `json:"superParams"`
 	MaxTimesPerClient int32  `json:"maxTimesPerClient"`
@@ -127,8 +154,26 @@ func (c *QuestionaireModel) ParticipateSelect(limitStart, limit int, kind, categ
 				"test_id",
 				"test_caterotyname",
 				"test_categoryid",
-				"test_name",
-				"test_description",
+				"test_question",
+				"test_question",
+				"test_file",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
 				"test_file",
 				"test_para",
 			}
@@ -168,8 +213,26 @@ func (c *QuestionaireModel) PublishSelect(limitStart, limit int, kind, categoryI
 				"test_id",
 				"test_caterotyname",
 				"test_categoryid",
-				"test_name",
-				"test_description",
+				"test_question",
+				"test_question",
+				"test_file",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
+				"test_question",
 				"test_file",
 				"test_para",
 			}

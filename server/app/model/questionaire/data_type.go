@@ -1,3 +1,11 @@
+/**
+ * @Author: ModestYjx
+ * @Description:
+ * @File:  questionaire_user
+ * @Version: 1.0.0
+ * @Date: 2021/11/6 14:44
+ */
+
 package questionaire
 
 type QuestionaireModelView struct {
@@ -6,6 +14,25 @@ type QuestionaireModelView struct {
 	TemplateIntro string `json:"templateIntro"`
 	Question1     string `json:"question_1"`
 	Question2     string `json:"question_2"`
+	Question3     string `json:"question_3"`
+	Question4     string `json:"question_4"`
+	Question5     string `json:"question_5"`
+	Question6     string `json:"question_6"`
+	Question7     string `json:"question_7"`
+	Question8     string `json:"question_8"`
+	Question9     string `json:"question_9"`
+	Question10    string `json:"question_10"`
+
+	Answer1       string `json:"answer_1"`
+	Answer2       string `json:"answer_2"`
+	Answer3       string `json:"answer_3"`
+	Answer4       string `json:"answer_4"`
+	Answer5       string `json:"answer_5"`
+	Answer6       string `json:"answer_6"`
+	Answer7       string `json:"answer_7"`
+	Answer8       string `json:"answer_8"`
+	Answer9       string `json:"answer_9"`
+	Answer10      string `json:"answer_10"`
 	InitModelFile string `json:"initModelFile"`
 	SuperParams   string `json:"superParams"`
 }
