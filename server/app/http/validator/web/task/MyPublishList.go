@@ -1,3 +1,10 @@
+/**
+ * @Author: ModestYjx
+ * @Description:
+ * @File:  questionaire_user
+ * @Version: 1.0.0
+ * @Date: 2021/11/6 14:44
+ */
 package task
 
 import (
@@ -11,6 +18,7 @@ import (
 
 type MyPublishList struct {
 	common_data_type.Page
+	UserName string `form:"userName" json:"userName"`
 }
 
 func (t MyPublishList) CheckParams(c *gin.Context) {

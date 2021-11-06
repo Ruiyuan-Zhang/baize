@@ -23,18 +23,21 @@ type QuestionaireModelView struct {
 	Question9     string `json:"question_9"`
 	Question10    string `json:"question_10"`
 
-	Answer1       string `json:"answer_1"`
-	Answer2       string `json:"answer_2"`
-	Answer3       string `json:"answer_3"`
-	Answer4       string `json:"answer_4"`
-	Answer5       string `json:"answer_5"`
-	Answer6       string `json:"answer_6"`
-	Answer7       string `json:"answer_7"`
-	Answer8       string `json:"answer_8"`
-	Answer9       string `json:"answer_9"`
-	Answer10      string `json:"answer_10"`
+	Answer1  string `json:"answer_1"`
+	Answer2  string `json:"answer_2"`
+	Answer3  string `json:"answer_3"`
+	Answer4  string `json:"answer_4"`
+	Answer5  string `json:"answer_5"`
+	Answer6  string `json:"answer_6"`
+	Answer7  string `json:"answer_7"`
+	Answer8  string `json:"answer_8"`
+	Answer9  string `json:"answer_9"`
+	Answer10 string `json:"answer_10"`
+
 	InitModelFile string `json:"initModelFile"`
 	SuperParams   string `json:"superParams"`
+	Reward        string `json:"reward"`
+	Views         string `json:"views"`
 }
 
 type QuestionaireModelViewWithDataFormatList struct {

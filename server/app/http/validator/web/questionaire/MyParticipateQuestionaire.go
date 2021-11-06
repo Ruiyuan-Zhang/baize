@@ -1,3 +1,10 @@
+/**
+ * @Author: ModestYjx
+ * @Description:
+ * @File:  questionaire_user
+ * @Version: 1.0.0
+ * @Date: 2021/11/6 14:44
+ */
 package questionaire
 
 import (
@@ -11,6 +18,7 @@ import (
 
 type MyParticipateQuestionaireList struct {
 	common_data_type.Page
+	UserName string `form:"userName" json:"userName"`
 }
 
 func (t MyParticipateQuestionaireList) CheckParams(c *gin.Context) {
@@ -23,6 +31,7 @@ func (t MyParticipateQuestionaireList) CheckParams(c *gin.Context) {
 		response.ErrorParam(c, errs)
 		return
 	}
+
 	if ec := data_transfer.DataAddContext(t, consts.ValidatorPrefix, c); ec == nil {
 		response.ErrorSystem(c, "questionaire list 表单验证器json化失败", "")
 	} else {

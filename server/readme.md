@@ -11,6 +11,4 @@
 >   2.本项目骨架封装了以`tb_users`表为核心的全部功能（主要包括用户相关的接口参数验证器、注册、登录获取token、刷新token、CURD以及token鉴权等），开发者拉取本项目骨架，在此基础上就可以快速开发自己的项目。  
 
 ####    快速上手
-
-
 >![业务主线图](https://www.ginskeleton.com/GinSkeleton.jpg)

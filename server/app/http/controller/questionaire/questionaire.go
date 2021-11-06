@@ -1,3 +1,10 @@
+/**
+ * @Author: ModestYjx
+ * @Description:
+ * @File:  questionaire_user
+ * @Version: 1.0.0
+ * @Date: 2021/11/6 14:44
+ */
 package questionaire
 
 import (
@@ -38,6 +45,8 @@ func (t *Questionaire) Add() {
 		Answer8:       "answer_8",
 		Answer9:       "answer_9",
 		Answer10:      "answer_10",
+		Reward:        "reward",
+		Views:         "views",
 	}
 	questionaire.CreatQuestionaireFactory("").InsertData(questionaire_example)
 }
@@ -46,7 +55,6 @@ func (t *Questionaire) Add() {
 func (t *Questionaire) ParticipateQuestionaireList(context *gin.Context) {
 	var limit = context.GetFloat64(consts.ValidatorPrefix + "limit")
 	var limitStart = (context.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
-
 	var userName = context.GetString(consts.ValidatorPrefix + "userName")
 	// 新建一个问卷参与信息主体表，查询任务参与主体表中，participate_user_id为登录用户id的问卷列表
 	list := questionaire.CreatQuestionaireFactory("").ParticipateSelect(int(limitStart), int(limit), userName)
@@ -63,8 +71,8 @@ func (t *Questionaire) ParticipateQuestionaireList(context *gin.Context) {
 func (t *Questionaire) PublishQuestionaireList(context *gin.Context) {
 	var limit = context.GetFloat64(consts.ValidatorPrefix + "limit")
 	var limitStart = (context.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
-
 	var userName = context.GetString(consts.ValidatorPrefix + "userName")
+
 	// 问卷表应添加任务发布者的publish_user_id，查询任务表中publish_user_id为登录的用户id的问卷列表
 	list := questionaire.CreatQuestionaireFactory("").PublishSelect(int(limitStart), int(limit), userName)
 	if list != nil {

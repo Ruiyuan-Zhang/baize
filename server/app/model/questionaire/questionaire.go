@@ -18,7 +18,6 @@ import (
 	"strconv"
 )
 
-// 我在这里犯了一个错误，在struct中的属性，严格区分首字母大小写，大写为公有属性，外面可以访问到，小写为私有，外面访问不到。
 type QuestionaireModel struct {
 	model.BaseModel
 	Id            string `json:"id"`
@@ -45,6 +44,8 @@ type QuestionaireModel struct {
 	Answer8  string `json:"answer_8"`
 	Answer9  string `json:"answer_9"`
 	Answer10 string `json:"answer_10"`
+	Reward   string `json:"reward"`
+	Views    string `json:"views"`
 }
 
 func CreatQuestionaireFactory(sqlType string) *QuestionaireModel {
@@ -109,14 +110,12 @@ func (t *QuestionaireModel) Detail(id string) (tv QuestionaireModelView, err err
 
 // 查询参与问卷列表
 func (c *QuestionaireModel) ParticipateSelect(limitStart, limit int, userName string) (questionaire_list []QuestionaireModelView) { //这里的list是变量名，不是数据结构,to do
-	// to do:传入用户名
-	var user_name = "11"
 	// 查询问卷表中publish_user_id为登录的user_id的问卷列表
 	sql := `
 		SELECT  t_p_u.questionaire_id
 		FROM tb_questionaire_participate_user as t_p_u
 	`
-	sql += "where t_p_u.questionaire_participate_user_name = '" + user_name + "'"
+	sql += "where t_p_u.questionaire_participate_user_name = '" + userName + "'"
 	var questionaire_id_list []QuestionaireUserModelView
 	if res := c.Raw(sql, limitStart, limit).Find(&questionaire_id_list); res.Error != nil {
 		variable.ZapLog.Error("QuestionaireUserModel 查询出错", zap.Error(res.Error))
@@ -127,7 +126,7 @@ func (c *QuestionaireModel) ParticipateSelect(limitStart, limit int, userName st
 				SELECT  t.*
 				FROM tb_questionaire as t
 			`
-			sql += string("where t.questionaire_id =" + Strval(questionaire_id_list[i].QuestionaireId))
+			sql += string("where t.id =" + Strval(questionaire_id_list[i].QuestionaireId))
 			questionaire := QuestionaireModelView{
 				"test_id",
 				"test_caterotyname",
@@ -154,6 +153,8 @@ func (c *QuestionaireModel) ParticipateSelect(limitStart, limit int, userName st
 				"test_question",
 				"test_file",
 				"test_para",
+				"test_para",
+				"test_para",
 			}
 			c.Raw(sql, limitStart, limit).Find(&questionaire)
 			questionaire_list = append(questionaire_list, questionaire)
@@ -165,8 +166,6 @@ func (c *QuestionaireModel) ParticipateSelect(limitStart, limit int, userName st
 //查询发布问卷列表
 func (c *QuestionaireModel) PublishSelect(limitStart, limit int, userName string) (questionaire_list []QuestionaireModelView) {
 
-	// to do:传入用户名
-	userName = "11"
 	//查询问卷表中publish_user_id为登录的user_id的问卷列表
 	sql := `
 		SELECT  t_u.questionaire_id
@@ -185,7 +184,7 @@ func (c *QuestionaireModel) PublishSelect(limitStart, limit int, userName string
 				SELECT  t.*
 				FROM tb_questionaire as t
 			`
-			sql += string("where t.questionaire_id =" + Strval(questionaire_id_list[i].QuestionaireId))
+			sql += string("where t.id =" + Strval(questionaire_id_list[i].QuestionaireId))
 			questionaire := QuestionaireModelView{
 				"test_id",
 				"test_caterotyname",
@@ -211,6 +210,8 @@ func (c *QuestionaireModel) PublishSelect(limitStart, limit int, userName string
 				"test_question",
 				"test_question",
 				"test_file",
+				"test_para",
+				"test_para",
 				"test_para",
 			}
 			c.Raw(sql, limitStart, limit).Find(&questionaire)
