@@ -14,6 +14,7 @@ type MyParticipateQuestionaireList struct {
 }
 
 func (t MyParticipateQuestionaireList) CheckParams(c *gin.Context) {
+
 	if err := c.ShouldBind(&t); err != nil {
 		errs := gin.H{
 			"tips": "questionaire 参数校验失败，参数不符合规定，page的值(>0)、limit的值(>0)",
@@ -25,6 +26,6 @@ func (t MyParticipateQuestionaireList) CheckParams(c *gin.Context) {
 	if ec := data_transfer.DataAddContext(t, consts.ValidatorPrefix, c); ec == nil {
 		response.ErrorSystem(c, "questionaire list 表单验证器json化失败", "")
 	} else {
-		(&questionaire.Questionaire{}).List(ec)
+		(&questionaire.Questionaire{}).ParticipateQuestionaireList(ec)
 	}
 }
