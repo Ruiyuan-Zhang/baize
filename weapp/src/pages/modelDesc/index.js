@@ -7,7 +7,6 @@ import styles from './index.module.less'
 
 
 const Index = ({}) =>{
-    
 
     useEffect(()=>{
         const {title,id} = Taro.getCurrentInstance().router.params
@@ -38,7 +37,11 @@ const Index = ({}) =>{
                 </View>
             </View>
             <Tips className={styles.tips} text='小程序会显示相机视野中的目标范围和名称~' />
-            <Button className={styles.btn} type='primary' >点击体验</Button>
+            <Button className={styles.btn} type='primary' 
+              onClick={()=>Taro.navigateTo({url:'/pages/categoryModalShow/index'})}
+            >
+                点击体验
+            </Button>
         </View>
     )
 }

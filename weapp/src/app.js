@@ -29,7 +29,25 @@ import "taro-ui/dist/style/components/grid.scss";
 
 class App extends Component {
 
-  componentDidMount () {}
+
+  componentDidMount () {
+    // 微信小程序插件
+    var fetchWechat = require('fetch-wechat');
+    var tf = require('@tensorflow/tfjs-core');
+    var webgl = require('@tensorflow/tfjs-backend-webgl');
+    var plugin = requirePlugin('tfjsPlugin');
+    plugin.configPlugin({
+      // polyfill fetch function
+      fetchFunc: fetchWechat.fetchFunc(),
+      // inject tfjs runtime
+      tf,
+      // inject webgl backend
+      webgl,
+      // provide webgl canvas
+      canvas: wx.createOffscreenCanvas()
+    });
+    
+  }
 
   componentDidShow () {}
 

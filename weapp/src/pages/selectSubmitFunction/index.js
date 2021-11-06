@@ -39,12 +39,14 @@ const index = () =>{
                     <View className={styles.name}>普通问卷</View>
                     <View className={styles.content}>
                         <View className={styles.btn}
-                          onClick={()=>Taro.navigateTo({url:'/packageQuestion/pages/divQuestionnaire/index'})}
+                        //   onClick={()=>Taro.navigateTo({url:'/packageQuestion/pages/divQuestionnaire/index'})}
                         >
                             <Image className={styles.icon} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/issue_putong_muban_icon.png'></Image>
                             从模板中创建
                         </View>
-                        <View className={styles.btn}>
+                        <View className={styles.btn}
+                          onClick={()=>Taro.navigateTo({url:'/packageQuestion/pages/divQuestionnaire/index'})}
+                        >
                             <Image className={styles.icon} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/issue_putong_zidingyi_icon.png'></Image>
                             自定义创建
                         </View>

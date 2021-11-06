@@ -1,9 +1,10 @@
 import { View, Input, Image } from '@tarojs/components'
 import { AtButton,AtDivider } from 'taro-ui'
 import QuestionaireItem from '@/components/QuestionaireItem'
+import { Swiper, SwiperItem } from '@tarojs/components'
 import Tail from '@/components/Tail'
 import Tabbar from '@/components/Tabbar'
-import Taro from '@tarojs/taro'
+import Taro, { clearStorage } from '@tarojs/taro'
 import styles from './index.module.less'
 
 const hotItems = [{
@@ -50,6 +51,13 @@ const questionaireItems = [{
   author:'浙江大学', see:123
 },]
 
+const swiperImages = [
+  'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106164938.png',
+  'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106165106.png',
+  'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106165150.png',
+  'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106165204.png',
+]
+
 const index = () =>{
   return (
   <View className={styles.index}>
@@ -63,7 +71,23 @@ const index = () =>{
         </View>
         <Image className={styles.add} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_add_icon.png'></Image>
       </View>
-      <Image className={styles.intro} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211009205105.png'></Image>
+      <View className={styles.intro} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211009205105.png'>
+        <Swiper
+          className='test-h'
+          indicatorColor='#999'
+          indicatorActiveColor='#333'
+          circular
+          indicatorDots
+          autoplay
+        >
+          {swiperImages.map((image,i)=>(
+            <SwiperItem key={i}>
+              <Image className={styles.swiperImage} src={image} mode='widthFix'></Image>
+            </SwiperItem>
+          ))}
+              
+        </Swiper>
+      </View>
     </View>
     <View className={styles.questionaire}> 
         <View hoverClass={styles.on}>

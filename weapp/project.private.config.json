@@ -149,6 +149,30 @@
           "pathName": "packageTask/pages/writeFLQuestionnaire/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "packageQuestion/pages/inputQuestion/index",
+          "pathName": "packageQuestion/pages/inputQuestion/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/categoryModalShow/index",
+          "pathName": "pages/categoryModalShow/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageTask/pages/categoryModalShowResult/index",
+          "pathName": "packageTask/pages/categoryModalShowResult/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/writeQuestionnaire/index",
+          "pathName": "pages/writeQuestionnaire/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -3,13 +3,16 @@ import { View,Image } from '@tarojs/components'
 import styles from './index.module.less'
 
 // 本组件是模型展示组件、问卷展示组件
-const index = ({id, src, name, category, info, author, see, type='questionnaire'}) =>{
+// 默认是普通的问卷
+const index = ({id, src, name, category, info, author, see, type='ord'}) =>{
 
     const jump = ()=>{
-        if (type === 'model'){
+        if (type == 'model'){
             Taro.navigateTo({url:`/pages/modelDesc/index?id=${id}&title=${name}`})
-        }else {
+        }else if(type=='fl') {
             Taro.navigateTo({url:'/packageTask/pages/writeFLQuestionnaire/index'})
+        }else {
+            Taro.navigateTo({url:'/pages/writeQuestionnaire/index'})
         }
     }
     return (

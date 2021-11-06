@@ -14,6 +14,9 @@ export default {
     'pages/myBaize/index',
     'pages/divFLquestionnaire/index',
     'pages/task/index',
+    'pages/categoryModalShow/index',
+    'pages/writeQuestionnaire/index',
+    
   ],
 
   subpackages:[
@@ -27,6 +30,7 @@ export default {
         'pages/train/index',
         'pages/dataPack/index',
         'pages/writeFLQuestionnaire/index',
+        'pages/categoryModalShowResult/index',
       ]
     },{
       root:'packageQuestion',
@@ -57,5 +61,11 @@ export default {
     navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'black'
-  }
+  },
+  "plugins": {
+    "tfjsPlugin": {
+      "version": "0.2.0",
+      "provider": "wx6afed118d9e81df9"
+    }
+  },
 }
