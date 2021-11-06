@@ -18,7 +18,7 @@ type Users struct {
 func (u *Users) Register(context *gin.Context) {
 	//  由于本项目骨架已经将表单验证器的字段(成员)绑定在上下文，因此可以按照 GetString()、GetInt64()、GetFloat64（）等快捷获取需要的数据类型，注意：相关键名规则：  前缀+验证器结构体中的 json 标签
 	// 当然也可以通过gin框架的上下文原始方法获取，例如： context.PostForm("user_name") 获取，这样获取的数据格式为文本，需要自己继续转换
-	userName := context.GetString(consts.ValidatorPrefix + "user_name")
+	userName := context.GetString(consts.ValidatorPrefix + "userName")
 	pass := context.GetString(consts.ValidatorPrefix + "pass")
 	userIp := context.ClientIP()
 	if curd.CreateUserCurdFactory().Register(userName, pass, userIp) {
@@ -30,7 +30,7 @@ func (u *Users) Register(context *gin.Context) {
 
 //  2.用户登录
 func (u *Users) Login(context *gin.Context) {
-	userName := context.GetString(consts.ValidatorPrefix + "user_name")
+	userName := context.GetString(consts.ValidatorPrefix + "userName")
 	pass := context.GetString(consts.ValidatorPrefix + "pass")
 	phone := context.GetString(consts.ValidatorPrefix + "phone")
 	userModel := model.CreateUserFactory("").Login(userName, pass)
@@ -70,7 +70,7 @@ func (u *Users) RefreshToken(context *gin.Context) {
 
 //3.用户查询（show）
 func (u *Users) Show(context *gin.Context) {
-	userName := context.GetString(consts.ValidatorPrefix + "user_name")
+	userName := context.GetString(consts.ValidatorPrefix + "userName")
 	page := context.GetFloat64(consts.ValidatorPrefix + "page")
 	limit := context.GetFloat64(consts.ValidatorPrefix + "limit")
 	limitStart := (page - 1) * limit
@@ -84,7 +84,7 @@ func (u *Users) Show(context *gin.Context) {
 
 //4.用户新增(store)
 func (u *Users) Store(context *gin.Context) {
-	userName := context.GetString(consts.ValidatorPrefix + "user_name")
+	userName := context.GetString(consts.ValidatorPrefix + "userName")
 	pass := context.GetString(consts.ValidatorPrefix + "pass")
 	realName := context.GetString(consts.ValidatorPrefix + "real_name")
 	phone := context.GetString(consts.ValidatorPrefix + "phone")
@@ -100,7 +100,7 @@ func (u *Users) Store(context *gin.Context) {
 //5.用户更新(update)
 func (u *Users) Update(context *gin.Context) {
 	userId := context.GetFloat64(consts.ValidatorPrefix + "id")
-	userName := context.GetString(consts.ValidatorPrefix + "user_name")
+	userName := context.GetString(consts.ValidatorPrefix + "userName")
 	pass := context.GetString(consts.ValidatorPrefix + "pass")
 	realName := context.GetString(consts.ValidatorPrefix + "real_name")
 	phone := context.GetString(consts.ValidatorPrefix + "phone")

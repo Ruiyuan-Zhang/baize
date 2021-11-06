@@ -1,13 +1,10 @@
 package questionaire
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"goskeleton/app/global/consts"
 	"goskeleton/app/model/questionaire"
-	"goskeleton/app/service/questionaire/curd"
-
-	//"goskeleton/app/model/questionaire"
+	"goskeleton/app/utils/rand"
 	"goskeleton/app/utils/response"
 )
 
@@ -15,25 +12,44 @@ type Questionaire struct {
 }
 
 // 添加一个问卷
-func (t *Questionaire) Add(context *gin.Context) {
-	if tmp := (&curd.QuestionaireCurd{}).Add(context); tmp != nil {
-		response.Success(context, consts.CurdStatusOkMsg, tmp)
-	} else {
-		response.Fail(context, consts.CurdCreatFailCode, consts.CurdCreatFailMsg, tmp)
+func (t *Questionaire) Add() {
+	// to do：前端传过来问卷的各个参数
+	questionaire_example := questionaire.QuestionaireModel{
+		Id:            rand.String(10),
+		Title:         "title",
+		TemplateIntro: "templateIntro",
+		Question1:     "question_1",
+		Question2:     "question_2",
+		Question3:     "question_3",
+		Question4:     "question_4",
+		Question5:     "question_5",
+		Question6:     "question_6",
+		Question7:     "question_7",
+		Question8:     "question_8",
+		Question9:     "question_9",
+		Question10:    "question_10",
+		Answer1:       "answer_1",
+		Answer2:       "answer_2",
+		Answer3:       "answer_3",
+		Answer4:       "answer_4",
+		Answer5:       "answer_5",
+		Answer6:       "answer_6",
+		Answer7:       "answer_7",
+		Answer8:       "answer_8",
+		Answer9:       "answer_9",
+		Answer10:      "answer_10",
 	}
+	questionaire.CreatQuestionaireFactory("").InsertData(questionaire_example)
 }
 
 // 获取我参与的问卷列表
 func (t *Questionaire) ParticipateQuestionaireList(context *gin.Context) {
 	var limit = context.GetFloat64(consts.ValidatorPrefix + "limit")
 	var limitStart = (context.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
-	var kind = context.GetString(consts.ValidatorPrefix + "kind")
-	var categoryId = context.GetString(consts.ValidatorPrefix + "categoryId")
-	var keyword = context.GetString(consts.ValidatorPrefix + "keyword")
-	var userName = context.GetString(consts.ValidatorPrefix + "user_name")
-	//新建一个问卷参与信息主体表，查询任务参与主体表中，participate_user_id为登录用户id的问卷列表
-	fmt.Println("---------------")
-	list := questionaire.CreatQuestionaireFactory("").ParticipateSelect(int(limitStart), int(limit), kind, categoryId, keyword, userName)
+
+	var userName = context.GetString(consts.ValidatorPrefix + "userName")
+	// 新建一个问卷参与信息主体表，查询任务参与主体表中，participate_user_id为登录用户id的问卷列表
+	list := questionaire.CreatQuestionaireFactory("").ParticipateSelect(int(limitStart), int(limit), userName)
 	if list != nil {
 		response.Success(context, consts.CurdStatusOkMsg, gin.H{
 			"list": list,
@@ -47,12 +63,10 @@ func (t *Questionaire) ParticipateQuestionaireList(context *gin.Context) {
 func (t *Questionaire) PublishQuestionaireList(context *gin.Context) {
 	var limit = context.GetFloat64(consts.ValidatorPrefix + "limit")
 	var limitStart = (context.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
-	var kind = context.GetString(consts.ValidatorPrefix + "kind")
-	var categoryId = context.GetString(consts.ValidatorPrefix + "categoryId")
-	var keyword = context.GetString(consts.ValidatorPrefix + "keyword")
-	var userName = context.GetString(consts.ValidatorPrefix + "user_name")
+
+	var userName = context.GetString(consts.ValidatorPrefix + "userName")
 	// 问卷表应添加任务发布者的publish_user_id，查询任务表中publish_user_id为登录的用户id的问卷列表
-	list := questionaire.CreatQuestionaireFactory("").PublishSelect(int(limitStart), int(limit), kind, categoryId, keyword, userName)
+	list := questionaire.CreatQuestionaireFactory("").PublishSelect(int(limitStart), int(limit), userName)
 	if list != nil {
 		response.Success(context, consts.CurdStatusOkMsg, gin.H{
 			"list": list,

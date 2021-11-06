@@ -11,18 +11,12 @@ package questionaire
 import (
 	"encoding/json"
 	"errors"
-	"github.com/gin-gonic/gin"
 	"github.com/qifengzhang007/sql_res_to_tree"
 	"go.uber.org/zap"
 	"goskeleton/app/global/variable"
 	"goskeleton/app/model"
-	"goskeleton/app/utils/data_bind"
 	"strconv"
 )
-
-func CreatQuestionaireFactory(sqlType string) *QuestionaireModel {
-	return &QuestionaireModel{BaseModel: model.BaseModel{DB: model.UseDbConn(sqlType)}}
-}
 
 // 我在这里犯了一个错误，在struct中的属性，严格区分首字母大小写，大写为公有属性，外面可以访问到，小写为私有，外面访问不到。
 type QuestionaireModel struct {
@@ -41,19 +35,20 @@ type QuestionaireModel struct {
 	Question9     string `json:"question_9"`
 	Question10    string `json:"question_10"`
 
-	Answer1           string `json:"answer_1"`
-	Answer2           string `json:"answer_2"`
-	Answer3           string `json:"answer_3"`
-	Answer4           string `json:"answer_4"`
-	Answer5           string `json:"answer_5"`
-	Answer6           string `json:"answer_6"`
-	Answer7           string `json:"answer_7"`
-	Answer8           string `json:"answer_8"`
-	Answer9           string `json:"answer_9"`
-	Answer10          string `json:"answer_10"`
-	InitModelFile     string `json:"initModelFile"`
-	SuperParams       string `json:"superParams"`
-	MaxTimesPerClient int32  `json:"maxTimesPerClient"`
+	Answer1  string `json:"answer_1"`
+	Answer2  string `json:"answer_2"`
+	Answer3  string `json:"answer_3"`
+	Answer4  string `json:"answer_4"`
+	Answer5  string `json:"answer_5"`
+	Answer6  string `json:"answer_6"`
+	Answer7  string `json:"answer_7"`
+	Answer8  string `json:"answer_8"`
+	Answer9  string `json:"answer_9"`
+	Answer10 string `json:"answer_10"`
+}
+
+func CreatQuestionaireFactory(sqlType string) *QuestionaireModel {
+	return &QuestionaireModel{BaseModel: model.BaseModel{DB: model.UseDbConn(sqlType)}}
 }
 
 // 表名
@@ -61,22 +56,14 @@ func (c *QuestionaireModel) TableName() string {
 	return "tb_questionaire"
 }
 
-// 新增一项任务
-func (t *QuestionaireModel) InsertData(c *gin.Context) *QuestionaireModel {
-	var tmp QuestionaireModel
-	if err := data_bind.ShouldBindFormDataToModel(c, &tmp); err == nil {
-		tmp.Id = strconv.FormatInt(variable.SnowFlake.GetId(), 10) // 后面的10表示10进制
-		if res := t.Create(&tmp); res.Error == nil {
-			return &tmp
-		} else {
-			variable.ZapLog.Error("QuestionaireModel 数据新增出错", zap.Error(res.Error))
-			return nil
-		}
+// 新增一项问卷
+func (t *QuestionaireModel) InsertData(tmp QuestionaireModel) *QuestionaireModel {
+	if res := t.Create(&tmp); res.Error == nil {
+		return &tmp
 	} else {
-		variable.ZapLog.Error("QuestionaireModel 数据绑定出错", zap.Error(err))
+		variable.ZapLog.Error("QuestionaireModel 数据新增出错", zap.Error(res.Error))
 		return nil
 	}
-
 }
 
 // 查询问卷列表
@@ -96,17 +83,9 @@ func (c *QuestionaireModel) Select(limitStart, limit int, kind, categoryId, keyw
 
 	sql := `
 		SELECT  c.name as category_name, t.*
-		FROM tb_questionaire as t, tb_category as c 
-		where t.category_id =c.id
+		FROM tb_questionaire as t, tb_category as c
 	`
-	if categoryId != "" {
-		sql += " and c.id = " + categoryId
-	}
-	if keyword != "" {
-		sql += " and ( t.name like '%" + keyword + "%' or t.description like '%" + keyword + "%' or t.id like '%" + keyword + "%' or c.name like '%" + keyword + "%')"
-	}
 	sql += " LIMIT ?, ?;"
-
 	if res := c.Raw(sql, limitStart, limit).Find(&list); res.Error != nil {
 		variable.ZapLog.Error("QuestionaireModel 查询出错", zap.Error(res.Error))
 		return nil
@@ -115,11 +94,11 @@ func (c *QuestionaireModel) Select(limitStart, limit int, kind, categoryId, keyw
 	}
 }
 
-// 任务详情信息查询
+// 问卷详情信息查询
 func (t *QuestionaireModel) Detail(id string) (tv QuestionaireModelView, err error) {
 	sql := `
 		SELECT  c.name as category_name, t.*
-		FROM tb_questionaire as t, tb_category as c where t.category_id =c.id and t.id = ?;
+		FROM tb_questionaire as t, tb_category as c where t.category_id =c.id and t.questionaire_id = ?;
 	`
 	if res := t.Raw(sql, id).Take(&tv); res.Error != nil {
 		variable.ZapLog.Error("QuestionaireModel 查询出错", zap.Error(res.Error))
@@ -128,17 +107,16 @@ func (t *QuestionaireModel) Detail(id string) (tv QuestionaireModelView, err err
 	return
 }
 
-// 查询参与任务列表
-func (c *QuestionaireModel) ParticipateSelect(limitStart, limit int, kind, categoryId, keyword string, userName string) (questionaire_list []QuestionaireModelView) { //这里的list是变量名，不是数据结构,to do
+// 查询参与问卷列表
+func (c *QuestionaireModel) ParticipateSelect(limitStart, limit int, userName string) (questionaire_list []QuestionaireModelView) { //这里的list是变量名，不是数据结构,to do
 	// to do:传入用户名
 	var user_name = "11"
-	// 查询任务表中publish_user_id为登录的user_id的任务列表
+	// 查询问卷表中publish_user_id为登录的user_id的问卷列表
 	sql := `
 		SELECT  t_p_u.questionaire_id
 		FROM tb_questionaire_participate_user as t_p_u
 	`
 	sql += "where t_p_u.questionaire_participate_user_name = '" + user_name + "'"
-
 	var questionaire_id_list []QuestionaireUserModelView
 	if res := c.Raw(sql, limitStart, limit).Find(&questionaire_id_list); res.Error != nil {
 		variable.ZapLog.Error("QuestionaireUserModel 查询出错", zap.Error(res.Error))
@@ -184,18 +162,17 @@ func (c *QuestionaireModel) ParticipateSelect(limitStart, limit int, kind, categ
 	return questionaire_list
 }
 
-//查询发布任务列表
-func (c *QuestionaireModel) PublishSelect(limitStart, limit int, kind, categoryId, keyword string, userName string) (questionaire_list []QuestionaireModelView) {
+//查询发布问卷列表
+func (c *QuestionaireModel) PublishSelect(limitStart, limit int, userName string) (questionaire_list []QuestionaireModelView) {
 
 	// to do:传入用户名
 	userName = "11"
-	//查询任务表中publish_user_id为登录的user_id的任务列表
+	//查询问卷表中publish_user_id为登录的user_id的问卷列表
 	sql := `
 		SELECT  t_u.questionaire_id
 		FROM tb_questionaire_user as t_u
 	`
 	sql += "where t_u.user_name = '" + userName + "'"
-
 	var questionaire_id_list []QuestionaireUserModelView
 	res := c.Raw(sql, limitStart, limit).Find(&questionaire_id_list)
 	if res.Error != nil {
@@ -240,11 +217,10 @@ func (c *QuestionaireModel) PublishSelect(limitStart, limit int, kind, categoryI
 			questionaire_list = append(questionaire_list, questionaire)
 		}
 	}
-
 	return questionaire_list
 }
 
-// 任务详情信息查询 包含format信息
+// 问卷详情信息查询 包含format信息
 func (t *QuestionaireModel) DetailWithFormat(id string) (QuestionaireModelViewWithDataFormat, error) {
 	sql := `
 		SELECT  c.name as category_name, t.*,
@@ -253,7 +229,7 @@ func (t *QuestionaireModel) DetailWithFormat(id string) (QuestionaireModelViewWi
 		d.english_name as data_format_english_name,
 		d.tips as data_format_tips
 		FROM tb_questionaire as t, tb_category as c,tb_data_format as d 
-		where t.category_id =c.id and t.id=d.questionaire_id and t.id = ?;
+		where t.category_id =c.id and t.questionaire_id=d.questionaire_id and t.questionaire_id = ?;
 	`
 	var tvdl []QuestionaireModelViewWithDataFormatList
 	if res := t.Raw(sql, id).Find(&tvdl); res.Error == nil {
@@ -268,9 +244,8 @@ func (t *QuestionaireModel) DetailWithFormat(id string) (QuestionaireModelViewWi
 			return tvd[0], nil
 		} else {
 			variable.ZapLog.Error("QuestionaireModel 属性化出错" + err.Error())
-			return QuestionaireModelViewWithDataFormat{}, errors.New("未查询到该任务")
+			return QuestionaireModelViewWithDataFormat{}, errors.New("未查询到该问卷")
 		}
-
 	} else {
 		variable.ZapLog.Error("DetailWithFormat 查询出错", zap.Error(res.Error))
 		return QuestionaireModelViewWithDataFormat{}, errors.New("")

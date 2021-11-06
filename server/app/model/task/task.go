@@ -67,14 +67,6 @@ func (c *TaskModel) List(limitStart, limit int) (list []TaskModelView) {
 		FROM tb_task as t, tb_category as c where t.category_id =c.id LIMIT ?, ?;
 	`
 	if res := c.Raw(sql, limitStart, limit).Find(&list); res.Error != nil {
-		//println(list)
-		//types := reflect.TypeOf(list)
-		//field0 := types.Elem().Field(0)
-		//
-		//all_vale := types.Elem().String()
-		//
-		//fmt.Printf(field0.Tag.Get("json"))
-		//fmt.Printf(all_vale)
 		variable.ZapLog.Error("TaskModel 查询出错", zap.Error(res.Error))
 	}
 	return
@@ -96,7 +88,6 @@ func (c *TaskModel) Select(limitStart, limit int, kind, categoryId, keyword stri
 	sql += " LIMIT ?, ?;"
 
 	if res := c.Raw(sql, limitStart, limit).Find(&list); res.Error != nil {
-		print(list)
 		variable.ZapLog.Error("TaskModel 查询出错", zap.Error(res.Error))
 		return nil
 	} else {
@@ -105,7 +96,7 @@ func (c *TaskModel) Select(limitStart, limit int, kind, categoryId, keyword stri
 }
 
 // 查询参与任务列表
-func (c *TaskModel) ParticipateSelect(limitStart, limit int, kind, categoryId, keyword string, userName string) (task_list []TaskModelView) { //这里的list是变量名，不是数据结构,to do
+func (c *TaskModel) ParticipateSelect(limitStart, limit int, userName string) (task_list []TaskModelView) { //这里的list是变量名，不是数据结构,to do
 
 	// to do:传入用户名
 	var user_name = "11"
@@ -149,7 +140,7 @@ func (c *TaskModel) ParticipateSelect(limitStart, limit int, kind, categoryId, k
 }
 
 //查询发布任务列表
-func (c *TaskModel) PublishSelect(limitStart, limit int, kind, categoryId, keyword string, userName string) (task_list []TaskModelView) {
+func (c *TaskModel) PublishSelect(limitStart, limit int, userName string) (task_list []TaskModelView) {
 
 	// to do:传入用户名
 	userName = "11"

@@ -10,7 +10,6 @@ import (
 	"goskeleton/app/global/consts"
 	"goskeleton/app/model/task"
 	"goskeleton/app/service/task/curd"
-
 	//"goskeleton/app/model/task"
 	"goskeleton/app/utils/response"
 )
@@ -45,11 +44,8 @@ func (t *Task) List(context *gin.Context) {
 func (t *Task) PublishList(context *gin.Context) {
 	var limit = context.GetFloat64(consts.ValidatorPrefix + "limit")
 	var limitStart = (context.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
-	var kind = context.GetString(consts.ValidatorPrefix + "kind")
-	var categoryId = context.GetString(consts.ValidatorPrefix + "categoryId")
-	var keyword = context.GetString(consts.ValidatorPrefix + "keyword")
-	var userName = context.GetString(consts.ValidatorPrefix + "user_name")
-	list := task.CreatTaskFactory("").PublishSelect(int(limitStart), int(limit), kind, categoryId, keyword, userName)
+	var userName = context.GetString(consts.ValidatorPrefix + "userName")
+	list := task.CreatTaskFactory("").PublishSelect(int(limitStart), int(limit), userName)
 	if list != nil {
 		response.Success(context, consts.CurdStatusOkMsg, gin.H{
 			"list": list,
@@ -63,11 +59,9 @@ func (t *Task) PublishList(context *gin.Context) {
 func (t *Task) ParticipateList(context *gin.Context) {
 	var limit = context.GetFloat64(consts.ValidatorPrefix + "limit")
 	var limitStart = (context.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
-	var kind = context.GetString(consts.ValidatorPrefix + "kind")
-	var categoryId = context.GetString(consts.ValidatorPrefix + "categoryId")
-	var keyword = context.GetString(consts.ValidatorPrefix + "keyword")
-	var user_name = context.GetString(consts.ValidatorPrefix + "user_name")
-	list := task.CreatTaskFactory("").ParticipateSelect(int(limitStart), int(limit), kind, categoryId, keyword, user_name)
+
+	var userName = context.GetString(consts.ValidatorPrefix + "userName")
+	list := task.CreatTaskFactory("").ParticipateSelect(int(limitStart), int(limit), userName)
 	if list != nil {
 		response.Success(context, consts.CurdStatusOkMsg, gin.H{
 			"list": list,
