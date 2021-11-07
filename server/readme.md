@@ -12,3 +12,67 @@
 
 ####    快速上手
 >![业务主线图](https://www.ginskeleton.com/GinSkeleton.jpg)
+
+
+## web请求接口列表
+```bash=
+GET    /debug/pprof/             
+GET    /debug/pprof/cmdline      
+GET    /debug/pprof/profile      
+POST   /debug/pprof/symbol       
+GET    /debug/pprof/symbol       
+GET    /debug/pprof/trace        
+GET    /debug/pprof/allocs       
+GET    /debug/pprof/block        
+GET    /debug/pprof/goroutine    
+GET    /debug/pprof/heap         
+GET    /debug/pprof/mutex        
+GET    /debug/pprof/threadcreate 
+GET    /                         
+GET    /public/*filepath         
+HEAD   /public/*filepath         
+GET    /dir/*filepath            
+HEAD   /dir/*filepath            
+GET    /abcd                     
+HEAD   /abcd                     
+GET    /captcha/                 
+GET    /captcha/:captchaId       
+GET    /captcha/:captchaId/:value 
+GET    /admin/ws                 
+POST   /admin/users/register     
+POST   /admin/users/login        
+POST   /admin/users/refreshtoken 
+GET    /admin/users/index        
+POST   /admin/users/create       
+POST   /admin/users/edit         
+POST   /admin/users/delete       
+POST   /admin/upload/files       
+GET    /admin/questionaire/myParticipateQuestionaire 
+GET    /admin/questionaire/myPublishQuestionaire 
+POST   /admin/questionaire/add   
+GET    /admin/questionaire/list  
+GET    /admin/questionaire/select 
+GET    /admin/questionaire/detail 
+GET    /admin/questionaire/detailWithFormat 
+GET    /admin/category/list      
+GET    /admin/task/myParticipateList 
+GET    /admin/task/myPublishList 
+POST   /admin/task/add           
+GET    /admin/task/list          
+GET    /admin/task/select        
+GET    /admin/task/detail        
+GET    /admin/task/detailWithFormat 
+POST   /admin/task/taskUserAdd   
+POST   /admin/task/taskUserHave  
+GET    /admin/task/taskJoinList  
+POST   /admin/baizeStar/add      
+GET    /admin/baizeStar/list     
+GET    /admin/baizeStar/select   
+GET    /admin/baizeStar/detail   
+GET    /admin/baizeStar/detailWithFormat 
+POST   /admin/dataFormat/add     
+POST   /admin/model/client/add   
+GET    /admin/model/global/list  
+GET    /admin/model/global/listWithClients 
+POST   /admin/model/global/fedAvg 
+```

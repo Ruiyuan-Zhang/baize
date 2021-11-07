@@ -22,7 +22,7 @@ type BaizeStar struct {
 func (t *BaizeStar) Add() {
 	// 继承某结构体
 	baizestarExample := baizeStar.BaizeStarModel{
-		Id:        "4",
+		Id:        "5",
 		Reward:    "12",
 		UserName:  "yangjiaxun",
 		CreatedAt: "2021-08-10 07:44:18",
