@@ -1,17 +1,20 @@
 import {View, Image} from '@tarojs/components'
 import Taro from '@tarojs/taro'
+import {file_url} from '@/config/index'
 import styles from './index.module.less'
 
-const Index = ({className, submit=true}) => {
+const Index = ({className, submit=true,id, file,name,description,createAt }) => {
     return (
         <View className={className+' '+styles.index}>
             <View className={styles.top}>
-                <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211028213243.png'></Image>
+                <Image src={file_url+file}></Image>
                 <View className={styles.right}>
-                    <View className={styles.title}>手写数字识别</View>
-                    <View className={styles.content}>该模板用的是一个784*784*10的一个CNN网络，可以用28*28灰度图片的输入……</View>
-                    <View className={styles.time}>发布时间：2021-09-27 22:34:33</View>
-                    <View className={styles.details}>
+                    <View className={styles.title}>{name}</View>
+                    <View className={styles.content}>{description}</View>
+                    <View className={styles.time}>发布时间：{createAt}</View>
+                    <View className={styles.details}
+                        onClick={()=>Taro.navigateTo({url:`/packageTask/pages/writeFLQuestionnaire/index?id=${id}`})}
+                    >
                         查看详情
                         <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211028222557.png'></Image>
                     </View>
@@ -31,22 +34,20 @@ const Index = ({className, submit=true}) => {
                 {!submit&&<>
                     <View className={styles.line}></View>
                     <View className={styles.handle}
-                      onClick={()=>Taro.navigateTo({url:'/packageTask/pages/myLocalData/index'})}
+                      onClick={()=>Taro.navigateTo({url:`/packageTask/pages/myLocalData/index?id=${id}`})}
                     >
                         <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211028225529.png'></Image>
-                        数据
+                        我提交在本地的数据
                     </View>
                 </>}
-
                 <View className={styles.line}></View>
                 <View className={styles.handle}
-                  onClick={()=>(submit)?Taro.navigateTo({url:'/packageTask/pages/taskSchedule/index'}):Taro.navigateTo({url:'/packageTask/pages/myTaskSchedule/index'})}
+                    onClick={()=>Taro.navigateTo({url:'/packageTask/pages/taskSchedule/index'})}
                 >
-                    <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211028215836.png'></Image>
+                    <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211107102641.png'></Image>
                     任务进展
                 </View>
             </View>
-            
         </View>
     )
 }

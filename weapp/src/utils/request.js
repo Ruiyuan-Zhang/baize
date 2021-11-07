@@ -18,7 +18,7 @@ export default async function fetch(options) {
     const {
         data,
         method = 'POST',
-        showToast = true,
+        showToast = false,
         autoLogin = true,
         showLoading = true
     } = options

@@ -21,8 +21,8 @@ const Index = ({}) =>{
         <View className={styles.index}> 
             <View className={styles.title}>模型介绍</View>
             <View className={styles.content}>
-                <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211026152847.png'></Image>
-                <View>目标检测是计算机视觉和数字图像处理的一个热门方向，广泛应用于机器人导航、无人驾驶、智能视频监控、工业检测、航空航天等诸多领域，通过计算机视觉减少对人力资本的消耗，具有重要的现实意义。</View>
+                <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211107104954.png'></Image>
+                <View>目前，利用AI来进行医学诊断已经达到较高的水平。部分涉及隐私的皮肤病，可以在手机上使用模型来进行初步诊断，例如黑色素瘤。</View>
             </View>
             <View className={styles.title}>模型说明</View>
             <View className={styles.content}>
@@ -33,7 +33,7 @@ const Index = ({}) =>{
                 <Image className={styles.line} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211026155851.png'></Image>
                 <View className={styles.put}>
                     <View className={styles.putTitle}>输出</View>
-                    <View className={styles.putContent}>画面中物体范围与名称</View>
+                    <View className={styles.putContent}>恶性还是良性</View>
                 </View>
             </View>
             <Tips className={styles.tips} text='小程序会显示相机视野中的目标范围和名称~' />

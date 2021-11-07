@@ -16,6 +16,7 @@ export default {
     'pages/task/index',
     'pages/categoryModalShow/index',
     'pages/writeQuestionnaire/index',
+    'pages/question/index',
     
   ],
 
@@ -40,7 +41,12 @@ export default {
         'pages/inputQuestion/index',
         'pages/imageQuestion/index',
       ]
-    }
+    },{
+      "root": "packageUser",
+      "pages": [
+        'pages/login/index',
+      ]
+    } 
   ],
 
   tabBar: {
@@ -48,6 +54,9 @@ export default {
     list: [{
       pagePath: "pages/index/index",
       text: "首页"
+    },{
+      pagePath: "pages/question/index",
+      text: "问卷"
     },{
       pagePath: 'pages/task/index',
       text: '任务'

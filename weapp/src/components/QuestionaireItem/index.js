@@ -1,21 +1,22 @@
-import Taro from '@tarojs/taro'
 import { View,Image } from '@tarojs/components'
+import Taro from '@tarojs/taro'
 import {file_url} from '@/config/index'
 import styles from './index.module.less'
 
 // 本组件是模型展示组件、问卷展示组件
 // 默认是普通的问卷
-const index = ({id, file, name, categoryName, description, author='白泽团队官方', see, type='ord'}) =>{
+const index = ({id, file, fileAdd = true, name, categoryName, description, author='白泽团队官方', see, type='ord'}) =>{
 
-    file = file_url + file
-
+    if (fileAdd){
+        file = file_url + file
+    }
     see = Math.floor((Math.random()*100)+100);
 
     const jump = ()=>{
         if (type == 'model'){
             Taro.navigateTo({url:`/pages/modelDesc/index?id=${id}&title=${name}`})
         }else if(type=='fl') {
-            Taro.navigateTo({url:'/packageTask/pages/writeFLQuestionnaire/index'})
+            Taro.navigateTo({url:`/packageTask/pages/writeFLQuestionnaire/index?id=${id}`})
         }else {
             Taro.navigateTo({url:'/pages/writeQuestionnaire/index'})
         }
@@ -31,14 +32,13 @@ const index = ({id, file, name, categoryName, description, author='白泽团队�
                     {name}
 
                     {
-                        type!='moel'&&
-                        <View className={styles.tag} style={{backgroundColor:'#bed9c8',color:'#4eab5c'}}>
+                        type=='model'?'':<View className={styles.tag} style={{backgroundColor:'#bed9c8',color:'#4eab5c'}}>
                             {type == 'fl' && '联邦学习问卷'}
                             {type == 'ord' && '普通问卷'}
                         </View>
                     }
 
-                    {categoryName&&<View className={styles.tag} style={{backgroundColor:'#cbc5df',color:'#6026d4'}}>{categoryName}</View>}
+                    {/* {categoryName&&<View className={styles.tag} style={{backgroundColor:'#cbc5df',color:'#6026d4'}}>{categoryName}</View>} */}
                     
                 </View>
                 <View className={styles.info}>{description}</View>

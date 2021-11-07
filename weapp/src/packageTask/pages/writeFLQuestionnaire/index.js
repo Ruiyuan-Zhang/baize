@@ -1,18 +1,14 @@
 import {View, Image, Button} from '@tarojs/components'
 import { AtImagePicker, AtInput, AtIcon } from 'taro-ui'
 import Taro from '@tarojs/taro'
-import {useState} from 'react'
-import Submit from './components/Submit'
+import {useEffect, useState} from 'react'
+import request from '@/utils/request'
+import insertData from './insertData'
 import styles from './index.module.less'
 
 const Index = () =>{
 
-    const [datas,setDatas] = useState([
-        [
-            {title:'请输入含有手写数字的图片',type:'image',englishName:'image'},
-            {title:'请输入图片中的数字',type:'int',englishName:'value'}
-        ],
-    ])
+    const [datas,setDatas] = useState([])
 
     const onChangeLocalData = ({dataIndex,index,value}) =>{
         console.log({dataIndex,index,value})
@@ -31,11 +27,6 @@ const Index = () =>{
             ]
         ])
     } 
-
-    // 删除一条本地数据
-    const delLocalData = i =>{
-        
-    }
 
     // 每一组数据
     const Lines = ({dataIndex,lines}) =>{
@@ -74,23 +65,45 @@ const Index = () =>{
         )
     }
 
+    // 获取当前任务信息
+    const [task,setTask] = useState({})
+    useEffect(()=>{
+        (async function(){
+            const {id,ret} = Taro.getCurrentInstance().router.params
+            if (!id) {
+                Taro.showToast({title:'请传入任务编号', icon:'none'})
+                return
+            }
+            
+            let res = await request({url:`/v1/admin/task/detailWithFormat?id=${id}`,method:'get'})
+            if (res instanceof Error)return
+            setTask(res.data)
+
+            let ds = res.data.dataFormats
+            for (let i =0;i<ds.length;i++){
+                ds[i].title = ds[i].tips
+            }
+            setDatas([ds])
+        })()
+    },[])
+
 
     return (
         <View className={styles.index}>
             <Image className={styles.bgm} mode='widthFix' src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211105155522.png'></Image>
             <View className={styles.info}>
-                <View className={styles.name}>手写数字识别</View>
-                <View className={styles.desc}>通过训练模型，可以让机器学会识别手写数字～</View>
+            <View className={styles.name}>{task.name}</View>
+            <View className={styles.desc}>{task.description}</View>
             </View>
             <View className={styles.datas}>
                 {
                     datas.map((lines,dataIndex)=>(
                         <View key={dataIndex} className={styles.data}>
-                            <AtIcon size='18' value='close' color='red' 
+                            {/* <AtIcon size='18' value='close' color='red' 
                               onClick={()=>{
                                 delLocalData(dataIndex)
                               }}
-                            />
+                            /> */}
                             <Lines dataIndex={dataIndex} lines={lines} />
                         </View>
                     ))
@@ -105,11 +118,17 @@ const Index = () =>{
                 <View className={styles.desc}>每组数据可获得6个白泽星奖励~</View>
                 <View className={styles.desc}>至少上传两份数据才能用于本地模型训练哦~</View>
             </View>
-            <Submit 
-              onClick={()=>{
-                  Taro.navigateTo({url:'/pages/Results/index'})
-              }}
-            />
+            <View className={styles.bindex}>
+                <Button className={styles.submit}
+                onClick={()=>{
+                    insertData(task,datas)
+                }}
+                >
+                    <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106090222.png'></Image>
+                    保存
+                </Button>
+            </View>
+              
         </View>
     )
 }

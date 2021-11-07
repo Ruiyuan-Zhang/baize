@@ -1,4 +1,4 @@
 export default {
-  navigationBarTitleText: '猫狗分类模型展示',
+  navigationBarTitleText: '黑色素瘤检测模型展示',
   // navigationStyle:'custom'
 }

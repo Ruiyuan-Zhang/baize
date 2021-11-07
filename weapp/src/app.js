@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { initData, } from '@/common/data'
 import './app.less'
 
 // 引入全局的taro-ui样式
@@ -46,6 +47,8 @@ class App extends Component {
       // provide webgl canvas
       canvas: wx.createOffscreenCanvas()
     });
+
+    initData()
     
   }
 

@@ -177,7 +177,6 @@ func (g *GlobalModel) FedAvg(c *gin.Context) error {
 	}
 
 	// 2. 处理聚合
-
 	startTime := time.Now().UnixNano() / 1e6
 	if newTestData, newGlobalModel, acc, err := (&Train{}).FedAvg(globalModel, clientModels, testData); err == nil {
 		endTime := time.Now().UnixNano() / 1e6

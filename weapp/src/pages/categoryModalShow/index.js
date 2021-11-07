@@ -12,7 +12,7 @@ const Index = () =>{
             <View className={styles.content}>
                 <View className={styles.imageTip} > 
                     <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106111452.png'></Image>
-                    请上传手写数字的照片
+                    请上传的照片
                 </View>
                 <View className={styles.upload}>
                     <AtImagePicker 

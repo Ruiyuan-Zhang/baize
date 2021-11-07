@@ -11,7 +11,7 @@ const Index = () =>{
 
     useEffect(()=>{
         (async function(){
-            const modelUrl = 'http://192.168.24.33:5000/model.json'
+            const modelUrl = 'https://gflmini.zju-zry.club/file/models/globalModelSameDir/tzGVcdE52pkAjVgENqgQ/model.json'
             // const modelUrl = 'https://gflmini.zju-zry.club/file/models/globalModelSameDir/M0cOW9Foy2URn7ELV3H5/model.json'
             console.log('开始识别')
             let res = await predict({
@@ -35,9 +35,11 @@ const Index = () =>{
                     <Image src={image}></Image>
                 </View>
                 <View className={styles.ans}>
-                    这个数字是
+                    您的皮肤是
                     <View className={styles.highlight}>
-                        {value}
+                        {value==0&&'良性'}
+                        {value==1&&'恶性'}
+                        {value!=0&&value!=1&&'未知'}
                     </View>
                     !
                 </View>
