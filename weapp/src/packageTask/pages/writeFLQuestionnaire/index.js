@@ -1,23 +1,30 @@
 import {View, Image, Button} from '@tarojs/components'
-import { AtImagePicker, AtInput, AtIcon } from 'taro-ui'
+import { AtImagePicker, AtInput } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import {useEffect, useState} from 'react'
 import request from '@/utils/request'
-import insertData from './insertData'
+import {file_url} from '@/config'
+import Modal from './modal'
 import styles from './index.module.less'
 
 const Index = () =>{
 
-    const [datas,setDatas] = useState([])
 
+    
+
+    /**
+     * 控制界面的列表信息
+     */
+    // 界面详细信息
+    const [datas,setDatas] = useState([])
+    // 改变正在添加的列表的信息
     const onChangeLocalData = ({dataIndex,index,value}) =>{
         console.log({dataIndex,index,value})
         let ds = [...datas]
         ds[dataIndex][index].value=value
         setDatas(ds)
     }
-
-    // 再添加一条本地数据
+    // 再添加一条本地数据组
     const addMoreData = () =>{
         setDatas([
             ...datas,
@@ -27,7 +34,6 @@ const Index = () =>{
             ]
         ])
     } 
-
     // 每一组数据
     const Lines = ({dataIndex,lines}) =>{
         return (
@@ -65,11 +71,14 @@ const Index = () =>{
         )
     }
 
+    /**
+     * 获取当前界面上的信息
+     */
     // 获取当前任务信息
+    const {id,ret} = Taro.getCurrentInstance().router.params
     const [task,setTask] = useState({})
     useEffect(()=>{
         (async function(){
-            const {id,ret} = Taro.getCurrentInstance().router.params
             if (!id) {
                 Taro.showToast({title:'请传入任务编号', icon:'none'})
                 return
@@ -87,10 +96,12 @@ const Index = () =>{
         })()
     },[])
 
+    // 控制保存之后的提示信息的展示
+    const [modal, setModal]= useState(false)
 
     return (
         <View className={styles.index}>
-            <Image className={styles.bgm} mode='widthFix' src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211105155522.png'></Image>
+            <Image className={styles.bgm} mode='widthFix' src={file_url+task.file}></Image>
             <View className={styles.info}>
             <View className={styles.name}>{task.name}</View>
             <View className={styles.desc}>{task.description}</View>
@@ -120,15 +131,16 @@ const Index = () =>{
             </View>
             <View className={styles.bindex}>
                 <Button className={styles.submit}
-                onClick={()=>{
-                    insertData(task,datas)
+                onClick={async()=>{
+                    // 展示提示信息
+                    setModal(true)
                 }}
                 >
-                    <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106090222.png'></Image>
+                    <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/save.png'></Image>
                     保存
                 </Button>
             </View>
-              
+            <Modal taskId={id} modal={modal} setModal={setModal} task={task} datas={datas}></Modal>
         </View>
     )
 }

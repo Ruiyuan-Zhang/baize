@@ -21,7 +21,12 @@ const Index = ({index=0}) =>{
                     {tabs[1].name}
                 </View>
                 <View className={styles.add}>
-                    <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/add_b@3x.png'></Image>
+                    <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/add_b@3x.png'
+                        onClick={()=>{
+                            Taro.navigateTo({url:'/pages/selectSubmitFunction/index'})
+                            Taro.vibrateShort()
+                        }}
+                    ></Image>
                 </View>
                 <View className={styles.tab} onClick={()=>Taro.switchTab({url:tabs[2].url})}>
                     <Image src={index==2?tabs[2].on:tabs[2].off}></Image>

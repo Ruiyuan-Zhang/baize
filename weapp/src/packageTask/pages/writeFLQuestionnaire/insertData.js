@@ -5,7 +5,6 @@ import { getData,saveData } from '@/common/data'
  * 将新的数据集保存在微信小程序的本地文件中
  */
 const save = async (task={id:'-1'}, datas=[]) =>{
-    console.log(datas)
     let nds = []
     for (let i =0;i<datas.length;i++){
         for (let j=0;j<datas[i][0].value.length;j++){

@@ -26,11 +26,10 @@ const index = ({id, file, fileAdd = true, name, categoryName, description, autho
         <View className={styles.index} hoverClass={styles.indexClick}
           onClick={jump}
         >
-            <Image className={styles.image} src={file}></Image>
+            <Image className={styles.image} src={file} mode='widthFix'></Image>
             <View className={styles.body}>
                 <View className={styles.title}>
-                    {name}
-
+                    <View className={styles.name}>{name}</View>
                     {
                         type=='model'?'':<View className={styles.tag} style={{backgroundColor:'#bed9c8',color:'#4eab5c'}}>
                             {type == 'fl' && '联邦学习问卷'}

@@ -93,14 +93,24 @@ const Index = () =>{
         </Swiper>
       </View>
     </View>
+
+    {/* 发布问卷和填写问卷 */}
     <View className={styles.questionaire}> 
-        <View hoverClass={styles.on}>
+        <View >
           <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_button_fabu@3x.png'
-            onClick={()=>Taro.navigateTo({url:'/pages/selectSubmitFunction/index'})}
+            onClick={()=>{
+              Taro.navigateTo({url:'/pages/selectSubmitFunction/index'})
+              Taro.vibrateShort()
+            }}
           ></Image>
         </View>
         <View>
-          <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_button_tianxie@3x.png'></Image>
+          <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_button_tianxie@3x.png'
+            onClick={()=>{
+              Taro.navigateTo({url:'/pages/questionnaireList/index'})
+              Taro.vibrateShort()
+            }}
+          ></Image>
         </View>
     </View>
 
@@ -124,7 +134,10 @@ const Index = () =>{
         <View className={styles.title}>
           <Image className={styles.titleIcon} mode='heightFix' src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/wenjuan_title@3x.png'></Image>
           <View className={styles.more}
-            onClick={()=>Taro.navigateTo({url:'/pages/questionnaireList/index'})}
+            onClick={()=>{
+              Taro.navigateTo({url:'/pages/questionnaireList/index'})
+              Taro.vibrateShort()
+            }}
           >
             查看更多
             <Image className={styles.moreIcon} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/more_icon@2x.png' ></Image>

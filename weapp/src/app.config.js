@@ -32,7 +32,7 @@ export default {
         'pages/dataPack/index',
         'pages/writeFLQuestionnaire/index',
         'pages/categoryModalShowResult/index',
-      ]
+      ],
     },{
       root:'packageQuestion',
       pages:[
