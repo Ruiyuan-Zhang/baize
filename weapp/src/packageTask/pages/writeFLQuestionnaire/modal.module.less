@@ -1,0 +1,32 @@
+.modal{
+    :global(.at-modal){
+        :global(.at-modal__container){
+            width: 670rpx;
+            :global(.at-modal__header){
+                font-weight: 500;
+                font-size: 28rpx;
+                color: #0D2EF0;
+            }
+            :global(.at-modal__content){
+                height: 100rpx;
+                min-height: 100rpx;
+                font-size: 24rpx;
+                color: #000000;
+                font-weight: 500;
+            }
+            :global(.at-modal__footer){
+                :global(.at-modal__action){
+                    button{
+                        background: none;
+                        font-weight: 500;
+                        font-size: 28rpx;
+                        color: #0D2EF0;
+                        &:nth-child(1){
+                            color: #999999;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

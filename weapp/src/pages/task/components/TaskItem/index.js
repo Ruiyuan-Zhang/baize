@@ -6,15 +6,18 @@ import styles from './index.module.less'
 const Index = ({className, submit=true,id, file,name,description,createAt }) => {
     return (
         <View className={className+' '+styles.index}>
-            <View className={styles.top}>
+            <View className={styles.top}
+              onClick={()=>{
+                Taro.vibrateShort()
+                Taro.navigateTo({url:`/packageTask/pages/writeFLQuestionnaire/index?id=${id}`})
+              }}
+            >
                 <Image src={file_url+file}></Image>
                 <View className={styles.right}>
                     <View className={styles.title}>{name}</View>
                     <View className={styles.content}>{description}</View>
                     <View className={styles.time}>发布时间：{createAt}</View>
-                    <View className={styles.details}
-                        onClick={()=>Taro.navigateTo({url:`/packageTask/pages/writeFLQuestionnaire/index?id=${id}`})}
-                    >
+                    <View className={styles.details}>
                         查看详情
                         <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211028222557.png'></Image>
                     </View>

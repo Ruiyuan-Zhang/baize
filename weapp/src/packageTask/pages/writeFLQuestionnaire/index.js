@@ -4,79 +4,18 @@ import Taro from '@tarojs/taro'
 import {useEffect, useState} from 'react'
 import request from '@/utils/request'
 import {file_url} from '@/config'
+import Lines from './lines'
 import Modal from './modal'
 import styles from './index.module.less'
 
+// 放在这里的话，就可以记录每一次在本界面进行的操作
+let datas = {}
+
 const Index = () =>{
 
-
-    
-
-    /**
-     * 控制界面的列表信息
-     */
-    // 界面详细信息
-    const [datas,setDatas] = useState([])
-    // 改变正在添加的列表的信息
-    const onChangeLocalData = ({dataIndex,index,value}) =>{
-        console.log({dataIndex,index,value})
-        let ds = [...datas]
-        ds[dataIndex][index].value=value
-        setDatas(ds)
-    }
-    // 再添加一条本地数据组
-    const addMoreData = () =>{
-        setDatas([
-            ...datas,
-            [
-                {title:'请输入含有手写数字的图片',type:'image',englishName:'image'},
-                {title:'请输入图片中的数字',type:'int',englishName:'value'}
-            ]
-        ])
-    } 
-    // 每一组数据
-    const Lines = ({dataIndex,lines}) =>{
-        return (
-            lines.map(({title,type},i)=>(
-                <View key={i} className={styles.line}>
-                    <View className={styles.title}
-                      onClick={()=>{
-                          console.log({dataIndex,i})
-                        }}
-                    >
-                        {title}
-                    </View>
-                    {type=='image'
-                    ?<AtImagePicker 
-                        name={'images-'+dataIndex+'-'+i}
-                        files={lines[i].value}
-                        onChange={fs=>onChangeLocalData({
-                            dataIndex,
-                            index:i,
-                            value:fs
-                        })}
-                    />
-                    :<AtInput 
-                        name={'input-'+dataIndex+'-'+i}
-                        value={datas[dataIndex][i].value}
-                        onChange={v=>onChangeLocalData({
-                            dataIndex,
-                            index:i,
-                            value:v
-                        })}
-                    />}
-                    
-                </View>
-            ))
-        )
-    }
-
-    /**
-     * 获取当前界面上的信息
-     */
-    // 获取当前任务信息
     const {id,ret} = Taro.getCurrentInstance().router.params
     const [task,setTask] = useState({})
+    const [dataFormat, setDataFormat] = useState([])
     useEffect(()=>{
         (async function(){
             if (!id) {
@@ -92,12 +31,53 @@ const Index = () =>{
             for (let i =0;i<ds.length;i++){
                 ds[i].title = ds[i].tips
             }
-            setDatas([ds])
+            setDataFormat(ds)
         })()
     },[])
 
     // 控制保存之后的提示信息的展示
     const [modal, setModal]= useState(false)
+
+    // 本界面的列表信息
+    const [ids, setIDs] = useState([(new Date()).getTime() + '' + Math.floor(Math.random()*10000)])
+    const addLine = ()=>{
+        setIDs([
+            ...ids,
+            (new Date()).getTime() + '' + Math.floor(Math.random()*10000)
+        ])
+    }
+
+    // 初始化当前界面的信息
+    useEffect(()=>{
+        datas={}
+    },[])
+
+    // 检查一下数据表格是否提交
+    const checkAllInput = (ids,datas,dataFormat)=>{
+        console.log(ids)
+        console.log(datas)
+        console.log(dataFormat)
+        for (let i=0;i<ids.length;i++){
+
+            // 判断一下这一组数据是不是写了？
+            const id = ids[i]
+            if (!datas[id])return false
+
+            for (let j =0;j<dataFormat.length;j++){
+
+                // 判断一下每个数据项是不是填写了
+                if(!datas[id][dataFormat[j].englishName]){
+                    return false
+                }
+
+                // 针对数组，判断一下数组的长度是不是正确
+                if((datas[id][dataFormat[j].englishName] instanceof Array) && datas[id][dataFormat[j].englishName].length <= 0){
+                    return false
+                }
+            }
+        }
+        return true
+    }
 
     return (
         <View className={styles.index}>
@@ -107,20 +87,15 @@ const Index = () =>{
             <View className={styles.desc}>{task.description}</View>
             </View>
             <View className={styles.datas}>
-                {
-                    datas.map((lines,dataIndex)=>(
-                        <View key={dataIndex} className={styles.data}>
-                            {/* <AtIcon size='18' value='close' color='red' 
-                              onClick={()=>{
-                                delLocalData(dataIndex)
-                              }}
-                            /> */}
-                            <Lines dataIndex={dataIndex} lines={lines} />
-                        </View>
-                    ))
-                }
+                {ids.map(id=>
+                    <Lines key={id} id={id} dataFormat={dataFormat}
+                      onChange={data=>{
+                        datas[id]=data
+                      }}
+                    />
+                )}
             </View>
-            <Button className={styles.add} type='primary' onClick={addMoreData}>
+            <Button className={styles.add} type='primary' onClick={addLine}>
                 <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211105021700.png'></Image>
                 添加更多数据
             </Button>
@@ -132,6 +107,14 @@ const Index = () =>{
             <View className={styles.bindex}>
                 <Button className={styles.submit}
                 onClick={async()=>{
+                    // 检查是不是都写上了
+                    if (!checkAllInput(ids,datas,dataFormat)){
+                        Taro.showToast({
+                            title:'您还有未填项',
+                            icon:'none',
+                        })
+                        return
+                    }
                     // 展示提示信息
                     setModal(true)
                 }}
@@ -140,7 +123,8 @@ const Index = () =>{
                     保存
                 </Button>
             </View>
-            <Modal taskId={id} modal={modal} setModal={setModal} task={task} datas={datas}></Modal>
+            {/* 这里解释一下，为啥在这里使用datas这样的变量，而不是状态值，因为在打开modal的时候，会重新渲染界面。 */}
+            <Modal taskId={id} modal={modal} setModal={setModal} task={task} datas={datas} dataFormat={dataFormat}></Modal>
         </View>
     )
 }

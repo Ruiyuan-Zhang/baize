@@ -25,6 +25,14 @@ page{
                 font-weight: 600;
                 color: #000000;
                 margin-bottom: 16rpx;
+
+                display: inline-block;
+                max-width: 300rpx;
+
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                // overflow: hidden和white-space: nowrap都是必须的否则不会显示省略号；
             }
             .content{
                 font-size: 20rpx;
