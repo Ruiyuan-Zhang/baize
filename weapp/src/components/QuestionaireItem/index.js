@@ -13,7 +13,6 @@ const index = ({id, file, fileAdd = true, name, categoryName, description, autho
     see = Math.floor((Math.random()*100)+100);
 
     const jump = ()=>{
-        Taro.vibrateShort()
         if (type == 'model'){
             Taro.navigateTo({url:`/pages/modelDesc/index?id=${id}&title=${name}`})
         }else if(type=='fl') {

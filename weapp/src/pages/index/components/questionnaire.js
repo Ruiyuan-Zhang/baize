@@ -9,7 +9,6 @@ const Index = () =>{
             <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_button_fabu@3x.png'
                 onClick={()=>{
                 Taro.navigateTo({url:'/pages/selectSubmitFunction/index'})
-                Taro.vibrateShort()
                 }}
             ></Image>
             </View>
@@ -17,7 +16,6 @@ const Index = () =>{
             <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/homepage_button_tianxie@3x.png'
                 onClick={()=>{
                 Taro.navigateTo({url:'/pages/questionnaireList/index'})
-                Taro.vibrateShort()
                 }}
             ></Image>
             </View>

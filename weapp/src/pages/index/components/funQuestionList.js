@@ -29,7 +29,7 @@ const Index = () =>{
             <View className={styles.more}
                 onClick={()=>{
                 Taro.navigateTo({url:'/pages/questionnaireList/index'})
-                Taro.vibrateShort()
+                
                 }}
             >
                 查看更多

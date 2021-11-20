@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import Taro from '@tarojs/taro'
 import { initData, } from '@/common/data'
 import './app.less'
 
@@ -32,7 +33,7 @@ class App extends Component {
 
 
   componentDidMount () {
-    // 微信小程序插件
+    // 一、 微信小程序插件
     var fetchWechat = require('fetch-wechat');
     var tf = require('@tensorflow/tfjs-core');
     var webgl = require('@tensorflow/tfjs-backend-webgl');
@@ -48,8 +49,18 @@ class App extends Component {
       canvas: wx.createOffscreenCanvas()
     });
 
+    // 二、 初始化文件管理器
     initData()
-    
+
+    // 三、配置跳转震动
+    const jumpClicks = ['navigateTo','switchTab','redirectTo','reLaunch','navigateBack']
+    jumpClicks.forEach(j=>{
+      const oj = Taro[j]  //记录原来的跳转函数
+      Taro[j] = x =>{
+        Taro.vibrateShort()  // 先震动一下
+        oj(x)                // 再执行之前的函数
+      }
+    })
   }
 
   componentDidShow () {}

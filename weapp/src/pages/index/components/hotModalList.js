@@ -21,7 +21,7 @@ const Index = () =>{
     return (
         <View className={styles.hotItem}
             onClick={()=>{
-                Taro.vibrateShort()
+                
                 Taro.navigateTo({url:`/pages/modelDesc/index?title=${name}`})
             }}
             >
@@ -38,7 +38,7 @@ const Index = () =>{
             <View className={styles.title}>
             <Image className={styles.titleIcon} mode='heightFix' src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/rememg_title@3x.png'></Image>
             <View className={styles.more}
-                onClick={()=>Taro.vibrateShort()&&Taro.navigateTo({url:'/pages/modelList/index'})}
+                onClick={()=>Taro.navigateTo({url:'/pages/modelList/index'})}
             >
                 查看更多
                 <Image className={styles.moreIcon} src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/more_icon@2x.png' ></Image>

@@ -8,7 +8,7 @@ const Index = ({className, submit=true,id, file,name,description,createAt }) => 
         <View className={className+' '+styles.index}>
             <View className={styles.top}
               onClick={()=>{
-                Taro.vibrateShort()
+                
                 Taro.navigateTo({url:`/packageTask/pages/writeFLQuestionnaire/index?id=${id}`})
               }}
             >

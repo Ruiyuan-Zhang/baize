@@ -12,11 +12,11 @@ const Index = ({index=0}) =>{
     return (
         <View className={styles.index}>
             <View className={styles.tabs}>
-                <View className={styles.tab} onClick={()=>Taro.vibrateShort()&&Taro.switchTab({url:tabs[0].url})}>
+                <View className={styles.tab} onClick={()=>Taro.switchTab({url:tabs[0].url})}>
                     <Image src={index===0?tabs[0].on:tabs[0].off}></Image>
                     {tabs[0].name}
                 </View>
-                <View className={styles.tab} onClick={()=>Taro.vibrateShort()&&Taro.switchTab({url:tabs[1].url})}>
+                <View className={styles.tab} onClick={()=>Taro.switchTab({url:tabs[1].url})}>
                     <Image src={index==1?tabs[1].on:tabs[1].off}></Image>
                     {tabs[1].name}
                 </View>
@@ -24,15 +24,15 @@ const Index = ({index=0}) =>{
                     <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/add_b@3x.png'
                         onClick={()=>{
                             Taro.navigateTo({url:'/pages/selectSubmitFunction/index'})
-                            Taro.vibrateShort()
+                            
                         }}
                     ></Image>
                 </View>
-                <View className={styles.tab} onClick={()=>Taro.vibrateShort()&&Taro.switchTab({url:tabs[2].url})}>
+                <View className={styles.tab} onClick={()=>Taro.switchTab({url:tabs[2].url})}>
                     <Image src={index==2?tabs[2].on:tabs[2].off}></Image>
                     {tabs[2].name}
                 </View>
-                <View className={styles.tab} onClick={()=>Taro.vibrateShort()&&Taro.switchTab({url:tabs[3].url})}>
+                <View className={styles.tab} onClick={()=>Taro.switchTab({url:tabs[3].url})}>
                     <Image src={index==3?tabs[3].on:tabs[3].off}></Image>
                     {tabs[3].name}   
                 </View> 
