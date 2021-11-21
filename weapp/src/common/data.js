@@ -54,38 +54,15 @@ const saveFileListToLocal = async list =>{
     return list
 }
 
-// 使用数据文件获取数据进行训练
-// 需要传入 taskId 和 getData 的返回值
-// 返回样例如下
-// list = [{
-//     image:"/task_taskId/data/xxx.png",
-//     value:"8"
-// },{
-//     image:"/task_taskId/data/xxx.png",
-//     value:"7"
-// }]
-const getDataList = ({taskId,data}) =>{
-    let res = data
-    let list = []
-    let task = res.tasks.filter(t => t.idStr == taskId )
-    if (task.length == 0){
-        // 该任务的测试数据为0份
-        return []
+// 获取本地文件列表
+const getLocalDataList = (id) =>{
+    const {tasks} = getData()
+    for (let i=0;i<tasks.length;i++){
+        if (tasks[i].id == id)return tasks[i].list
     }
-    task = task[0]
-    // `task.dataFormats.length == 0` 表示研究者只使用用户本地的计算资源，而不是用数据资源，具体的逻辑还没有设计
-    let sz = task.dataFormats.length == 0 ? 0 : task.dataFormats[0].values.length
-    for (let i=0;i<sz;i++){
-        list.push({})
-    }
-    task.dataFormats.forEach((df,i)=>{
-        df.values.forEach((v,j)=>{
-            list[j][df.englishName] = v
-        })
-    })
-    return list
+    return []
 }
 
 
 
-export { initData, getData,saveData,saveFileListToLocal,getDataList }
+export { initData, getData,saveData,saveFileListToLocal,getLocalDataList }

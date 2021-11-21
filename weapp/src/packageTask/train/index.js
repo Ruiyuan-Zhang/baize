@@ -21,11 +21,25 @@ const init = () =>{
     }
 }
 
-const train = async data =>{
-    const {task} = data
+/**
+ * 本地训练入口
+ * 返回训练完成之后的地址
+ */
+const train = async ({
+    task, dataList, globalModelFile,
+    onLoadModel,      // [回调] 成功下载远程的模型文件后
+    onIndexEpochEnd,  // [回调] 一整轮本地数据训练
+    onTrainEnd,       // [回调] 训练结束
+    onModalSaveStart, // [回调] 模型开始保存到模型文件服务器之前
+    onModalSaveEnd,   // [回调] 模型保存到模型文件服务器之后
+}) =>{
+
     if (ifImageCategory(task)){
         // 图像分类任务
-        let res = await imageCategory(data)
+        let res = await imageCategory({dataList, globalModelFile, 
+            onLoadModel,onIndexEpochEnd,onTrainEnd,
+            onModalSaveStart, onModalSaveEnd,
+        })
         return res
         
     }else if (ifValuesValue(task)){

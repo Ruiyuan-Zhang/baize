@@ -209,6 +209,12 @@
           "pathName": "packageTask/pages/myLocalData/index",
           "query": "id=609532441316564992",
           "scene": null
+        },
+        {
+          "name": "packageTask/pages/myLocalData/index",
+          "pathName": "packageTask/pages/myLocalData/index",
+          "query": "id=609532441316564992&name=%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB-%E7%BE%A4%E4%BD%93%E5%AE%9E%E9%AA%8C",
+          "scene": null
         }
       ]
     }

@@ -1,7 +1,7 @@
 import { View, Image, Button } from '@tarojs/components'
 import Taro, { useDidShow } from '@tarojs/taro'
 import NavBar from '@/components/NavBar'
-import { getData } from '@/common/data'
+import { getLocalDataList } from '@/common/data'
 import styles from './index.module.less'
 import { useState } from 'react'
 
@@ -16,14 +16,9 @@ const Index = () =>{
             return
         }
 
-        let { tasks } = getData()
-        for (let i=0;i<tasks.length;i++){
-            if(tasks[i].id == id){
-                console.log(tasks[i].list)
-                setData(tasks[i].list)
-                break
-            }
-        }
+        let list = getLocalDataList(id)
+        setData(list)
+        
     })
 
     return (
@@ -50,7 +45,7 @@ const Index = () =>{
                     添加本地数据
                 </Button>
                 <Button className={styles.train}
-                  onClick={()=>Taro.navigateTo({url:'/packageTask/pages/train/index'})}
+                  onClick={()=>Taro.navigateTo({url:`/packageTask/pages/train/index?id=${id}`})}
                 >
                     手动参与训练
                 </Button>
