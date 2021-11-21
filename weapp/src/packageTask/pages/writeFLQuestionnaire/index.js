@@ -1,10 +1,9 @@
 import {View, Image, Button} from '@tarojs/components'
-import { AtImagePicker, AtInput } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import {useEffect, useState} from 'react'
 import request from '@/utils/request'
 import {file_url} from '@/config'
-import Lines from './lines'
+import Lines from '../../components/lines'
 import Modal from './modal'
 import styles from './index.module.less'
 
@@ -13,7 +12,7 @@ let datas = {}
 
 const Index = () =>{
 
-    const {id,ret} = Taro.getCurrentInstance().router.params
+    const {id} = Taro.getCurrentInstance().router.params
     const [task,setTask] = useState({})
     const [dataFormat, setDataFormat] = useState([])
     useEffect(()=>{
@@ -54,9 +53,6 @@ const Index = () =>{
 
     // 检查一下数据表格是否提交
     const checkAllInput = (ids,datas,dataFormat)=>{
-        console.log(ids)
-        console.log(datas)
-        console.log(dataFormat)
         for (let i=0;i<ids.length;i++){
 
             // 判断一下这一组数据是不是写了？
@@ -87,10 +83,10 @@ const Index = () =>{
             <View className={styles.desc}>{task.description}</View>
             </View>
             <View className={styles.datas}>
-                {ids.map(id=>
-                    <Lines key={id} id={id} dataFormat={dataFormat}
+                {ids.map(i=>
+                    <Lines key={i} id={i} dataFormat={dataFormat}
                       onChange={data=>{
-                        datas[id]=data
+                        datas[i]=data
                       }}
                     />
                 )}
@@ -106,7 +102,7 @@ const Index = () =>{
             </View>
             <View className={styles.bindex}>
                 <Button className={styles.submit}
-                onClick={async()=>{
+                  onClick={async()=>{
                     // 检查是不是都写上了
                     if (!checkAllInput(ids,datas,dataFormat)){
                         Taro.showToast({
@@ -117,7 +113,7 @@ const Index = () =>{
                     }
                     // 展示提示信息
                     setModal(true)
-                }}
+                  }}
                 >
                     <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/save.png'></Image>
                     保存

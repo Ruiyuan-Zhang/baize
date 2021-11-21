@@ -1,52 +1,50 @@
 import { View, Image, Button } from '@tarojs/components'
-import Taro from '@tarojs/taro'
+import Taro, { useDidShow } from '@tarojs/taro'
 import NavBar from '@/components/NavBar'
-import { getData,saveData } from '@/common/data'
+import { getData } from '@/common/data'
 import styles from './index.module.less'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 const Index = () =>{
 
-    const [data, setData] = useState([])
-    useEffect(()=>{
-        const {id,ret} = Taro.getCurrentInstance().router.params
+    
+    const {id,name} = Taro.getCurrentInstance().router.params
+    const [data, setData] = useState([])  // 本地数据列表
+    useDidShow(()=>{
         if (!id) {
             Taro.showToast({title:'请传入任务编号', icon:'none'})
             return
         }
 
-        let ts = getData()
-        for (let i=0;i<ts.length;i++){
-            if(ts[i].id == id){
-                setData(ts[i].list)
+        let { tasks } = getData()
+        for (let i=0;i<tasks.length;i++){
+            if(tasks[i].id == id){
+                console.log(tasks[i].list)
+                setData(tasks[i].list)
                 break
             }
         }
-        console.log(id)
-        
-        console.log(ts)
-
-    },[])
+    })
 
     return (
         <View className={styles.index}>
             <NavBar title='本地数据管理' />
             <View className={styles.title}>本地数据情况</View>
             <View className={styles.data}>
-                <View className={styles.name}>手写数字识别-浙江大学群体实验</View>
+            <View className={styles.name}>{name}</View>
                 <View className={styles.localDatas}>
-                    {data.map(({src,value}, i)=>(
+                    {data.map(({image,value}, i)=>(
                         <View key={i} className={styles.localData}>
-                            {src&&<Image src={src}></Image>}
+                            {image&&<Image src={image}></Image>}
                             <View>{value}</View>
                         </View>
                     ))}
                 </View>
                 <View className={styles.info}>
-                    本地数据：12份
+                    本地数据：{data&&data.length||0}份
                 </View>
                 <Button className={styles.addData}
-                  onClick={()=>Taro.navigateTo({url:'/packageTask/pages/addLocalData/index'})}
+                  onClick={()=>Taro.navigateTo({url:`/packageTask/pages/addLocalData/index?id=${id}`})}
                 >
                     <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211105002538.png'></Image>
                     添加本地数据

@@ -4,7 +4,7 @@
   "description": "白泽问卷",
   "appid": "wxc27e54130adbfd47",
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": false,
     "enhance": true,
     "postcss": false,

@@ -4,8 +4,7 @@ import { useState } from 'react'
 import {AtModal, AtModalContent} from 'taro-ui'
 import request from '@/utils/request'
 import {saveUser, getUser, removeUser} from '@/common/user'
-
-import insertData from './insertData'
+import insertData from '../../utils/insertData'
 import styles from './modal.module.less'
 
 const Index = ({taskId, modal, setModal, task/*后面的这个task是在网络请求后的结果，并不能立即获取，所以不能使用这个对象来获取id*/,

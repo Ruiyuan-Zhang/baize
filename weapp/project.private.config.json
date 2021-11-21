@@ -197,6 +197,18 @@
           "pathName": "packageTask/pages/writeFLQuestionnaire/index",
           "query": "id=610026896247234560",
           "scene": null
+        },
+        {
+          "name": "pages/task/index",
+          "pathName": "pages/task/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageTask/pages/myLocalData/index",
+          "pathName": "packageTask/pages/myLocalData/index",
+          "query": "id=609532441316564992",
+          "scene": null
         }
       ]
     }

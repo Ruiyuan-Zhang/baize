@@ -37,7 +37,7 @@ const Index = ({className, submit=true,id, file,name,description,createAt }) => 
                 {!submit&&<>
                     <View className={styles.line}></View>
                     <View className={styles.handle}
-                      onClick={()=>Taro.navigateTo({url:`/packageTask/pages/myLocalData/index?id=${id}`})}
+                      onClick={()=>Taro.navigateTo({url:`/packageTask/pages/myLocalData/index?id=${id}&name=${name}`})}
                     >
                         <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211028225529.png'></Image>
                         提交在本地的数据
@@ -45,14 +45,14 @@ const Index = ({className, submit=true,id, file,name,description,createAt }) => 
                 </>}
                 <View className={styles.line}></View>
                 <View className={styles.handle}
-                    onClick={()=>{
-                        if (submit){
-                            Taro.navigateTo({url:'/packageTask/pages/myTaskSchedule/index'})
-                        }else{
-                            Taro.navigateTo({url:'/packageTask/pages/taskSchedule/index'})
-                        }
-                        
-                    }}
+                  onClick={()=>{
+                    if (submit){
+                        Taro.navigateTo({url:'/packageTask/pages/myTaskSchedule/index'})
+                    }else{
+                        Taro.navigateTo({url:'/packageTask/pages/taskSchedule/index'})
+                    }
+                    
+                  }}
                 >
                     <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211107102641.png'></Image>
                     任务进展
