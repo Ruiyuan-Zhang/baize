@@ -1,22 +1,24 @@
 import { View, Image, Button } from '@tarojs/components'
 import { AtModal } from 'taro-ui'
-import Taro from '@tarojs/taro'
+import Taro, { useDidShow } from '@tarojs/taro'
 import NavBar from '@/components/NavBar'
+import request from '@/utils/request'
+import {saveUser, getUser, removeUser} from '@/common/user'
 import styles from './index.module.less'
 import { useState } from 'react'
 import { AtSwitch } from 'taro-ui'
 
 
-const Item = ({head, title}) =>{
+const Item = ({head, title,time,acc,banlance}) =>{
     return (
         <View className={styles.item}>
             {head?<Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211104215133.png'></Image>
             :<View className={styles.image}></View>}
             <View className={styles.title}>{title}</View>
             <View className={styles.content}>
-                <View>训练时间：1354ms</View>
-                <View>准确率：60%</View>
-                <View>收益：100白泽星</View>
+                <View>训练时间：{time||'-'}ms</View>
+                <View>准确率：{acc?acc*100:'-'}%</View>
+                <View>收益：{banlance||'-'}白泽星</View>
             </View>
             <View className={styles.time}>时间：2021-10-04 09:30</View>
         </View>
@@ -24,7 +26,35 @@ const Item = ({head, title}) =>{
 }
 
 const Index = () =>{
+    // 展示模型
     const [modal,setModal] = useState(false)
+
+    // 查询全局模型的情况
+    const {id} = Taro.getCurrentInstance().router.params
+    const [globalModelList,setGlobalModelList] = useState([])
+    useDidShow(async()=>{
+        let res = await request({method:'get',url:'/v1/admin/model/global/listWithClients',data:{
+            taskId:id, page:1, limit:100
+        }})
+        if (res instanceof Error) return
+        console.log(res.list)
+        setGlobalModelList(res.list.reverse())
+    },[])
+
+    // 判断当前轮次是不是当前用户
+    const joinNums = (clients) =>{
+        let num = 0
+        let trainTimeSum = 0
+        const user = getUser()
+        console.log(user)
+        for (let i=0;i<clients.length;i++){
+            if (clients[i].userName == user.user_name){
+                num += 1
+                trainTimeSum = +clients[i].time + trainTimeSum
+            }
+        }
+        return { num, trainTimeSum,}
+    }
 
     return(
         <View className={styles.index}>
@@ -34,11 +64,13 @@ const Index = () =>{
                 <View className={styles.title}>手写数字识别-浙江大学群体实验</View>
                 <View className={styles.info}>每轮聚合参与情况（当前处于第4轮）</View>
                 <View className={styles.items}>
-                    <Item title='正在进行：第5轮聚合' head></Item>
-                    <Item title='第4轮聚合'></Item>
-                    <Item title='第3轮聚合'></Item>
-                    <Item title='第2轮聚合'></Item>
-                    <Item title='第1轮聚合'></Item>
+                    <Item title={`正在进行：第${globalModelList.length+1}轮聚合`} head></Item>
+                    {globalModelList.map(({id,acc,clients},index)=>{
+                        const { num, trainTimeSum,} = joinNums(clients)
+                        if (num > 0){
+                            return <Item key={id} title={`第${globalModelList.length - index}轮聚合`} time={trainTimeSum} acc={acc} banlance={num*100}></Item>
+                        }
+                    })}
                 </View>
                 <Button>查看全局模型情况</Button>
             </View>
@@ -48,7 +80,6 @@ const Index = () =>{
                 <AtSwitch title='长期运行'
                   checked={modal}
                   onChange={()=>{
-                      console.log(123)
                     setModal(true)
                   }}
                 />

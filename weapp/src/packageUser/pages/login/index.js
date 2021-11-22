@@ -1,7 +1,8 @@
-import { View, Text, Input } from '@tarojs/components'
+import { View, Text, Switch } from '@tarojs/components'
 import styles from './index.module.less'
 import {saveUser, getUser, removeUser} from '@/common/user'
-import Taro, { pageScrollTo } from '@tarojs/taro'
+import {cacheUserPass, getCacheUserPass} from '@/common/data'
+import Taro, { clearStorage, pageScrollTo } from '@tarojs/taro'
 import { useEffect, useState } from 'react'
 import { AtAvatar, AtForm, AtInput, AtButton } from 'taro-ui'
 import fetch from '@/utils/request'
@@ -10,11 +11,27 @@ const Index = () =>{
     const [imgUrl,setImgUrl] = useState()
     const [name,setName] = useState()
     const [pass,setPass] = useState()
+    const [save,setSave] = useState()
+
+    useEffect(()=>{
+        const up = getCacheUserPass()
+        setSave(up.save)
+        setName(up.name)
+        setPass(up.pass)
+       
+    },[])
 
     const login = async ()=>{
         if(name&&pass){
             let user = await fetch({url: '/v1/admin/users/login',data: {user_name:name,pass}})
             if (user instanceof Error)return
+
+            if (save){
+                cacheUserPass({name,pass,save})
+            }else{
+                cacheUserPass({save})
+            }
+
             // console.log(user)
             saveUser(user)
             // 关闭所有界面 并转到首页界面
@@ -50,6 +67,12 @@ const Index = () =>{
             <View className={styles.form}>
                 <AtInput title='用户名' type='text' placeholder='请输入您的用户名' name='name' value={name} onChange={setName} cursorSpacing={100}/>
                 <AtInput title='密码' type='password' placeholder='请输入您的密码' name='pass' value={pass} onChange={setPass} cursorSpacing={100}/>
+                <View className={styles.save}>
+                    记住账号和密码 <Switch color='#6a91e1' checked={save} onChange={()=>{
+                        setSave(!save)
+                    }} />
+                </View>
+                
                 <AtButton type='primary' onClick={login}>登录</AtButton>
             </View>
         </View>

@@ -64,5 +64,30 @@ const getLocalDataList = (id) =>{
 }
 
 
+// 返回缓存在本地的账号、密码
+const getCacheUserPass = () =>{
+    let {userPass} = getData()
+    if (!userPass) userPass = {}
+    return userPass
+}
 
-export { initData, getData,saveData,saveFileListToLocal,getLocalDataList }
+// 将账号密码缓存在本地
+const cacheUserPass = ({name,pass,save}) => {
+    saveData({
+        ...getData(),
+        userPass:{
+            name,
+            pass,
+            save
+        }
+    })
+} 
+
+
+
+
+export { 
+    initData,getData,saveData,
+    saveFileListToLocal,getLocalDataList,
+    cacheUserPass, getCacheUserPass,
+}

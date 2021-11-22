@@ -8,7 +8,6 @@ const Index = ({className, submit=true,id, file,name,description,createAt }) => 
         <View className={className+' '+styles.index}>
             <View className={styles.top}
               onClick={()=>{
-                
                 Taro.navigateTo({url:`/packageTask/pages/writeFLQuestionnaire/index?id=${id}`})
               }}
             >
@@ -46,12 +45,11 @@ const Index = ({className, submit=true,id, file,name,description,createAt }) => 
                 <View className={styles.line}></View>
                 <View className={styles.handle}
                   onClick={()=>{
-                    if (submit){
-                        Taro.navigateTo({url:'/packageTask/pages/myTaskSchedule/index'})
+                    if (!submit){
+                        Taro.navigateTo({url:`/packageTask/pages/myTaskSchedule/index?id=${id}`})
                     }else{
-                        Taro.navigateTo({url:'/packageTask/pages/taskSchedule/index'})
+                        Taro.navigateTo({url:`/packageTask/pages/taskSchedule/index?id=${id}`})
                     }
-                    
                   }}
                 >
                     <Image src='https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211107102641.png'></Image>
