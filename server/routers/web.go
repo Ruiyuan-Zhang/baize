@@ -101,25 +101,6 @@ func InitWebRouter() *gin.Engine {
 				uploadFiles.POST("files", validatorFactory.Create(consts.ValidatorPrefix+"UploadFiles"))
 			}
 
-			// 普通问卷管理
-			Questionaire := backend.Group("questionaire/")
-			{
-				// 我参与的问卷列表
-				Questionaire.GET("myParticipateQuestionaire", validatorFactory.Create(consts.ValidatorPrefix+"MyParticipateQuestionaireList"))
-				// 我参与的问卷列表
-				Questionaire.GET("myPublishQuestionaire", validatorFactory.Create(consts.ValidatorPrefix+"MyPublishQuestionaireList"))
-				// 添加问卷
-				Questionaire.POST("add", validatorFactory.Create(consts.ValidatorPrefix+"QuestionaireAdd"))
-				// 问卷列表
-				Questionaire.GET("list", validatorFactory.Create(consts.ValidatorPrefix+"QuestionaireList"))
-				// 问卷查询
-				Questionaire.GET("select", validatorFactory.Create(consts.ValidatorPrefix+"QuestionaireSelect"))
-				// 问卷详情
-				Questionaire.GET("detail", validatorFactory.Create(consts.ValidatorPrefix+"QuestionaireDetail"))
-				// 问卷详情 包含格式
-				Questionaire.GET("detailWithFormat", validatorFactory.Create(consts.ValidatorPrefix+"QuestionaireDetailWithFormat"))
-			}
-
 			// 联邦学习任务分类管理
 			category := backend.Group("category/")
 			{
@@ -130,11 +111,6 @@ func InitWebRouter() *gin.Engine {
 			// 联邦学习任务管理
 			task := backend.Group("task/")
 			{
-				// 我参与的任务列表
-				task.GET("myParticipateList", validatorFactory.Create(consts.ValidatorPrefix+"MyParticipateList"))
-				// 我参与的任务列表
-				task.GET("myPublishList", validatorFactory.Create(consts.ValidatorPrefix+"MyPublishList"))
-
 				// 添加任务
 				task.POST("add", validatorFactory.Create(consts.ValidatorPrefix+"TaskAdd"))
 				// 任务列表
@@ -152,21 +128,6 @@ func InitWebRouter() *gin.Engine {
 				// 查询某个用户已经加入的任务列表
 				task.GET("taskJoinList", validatorFactory.Create(consts.ValidatorPrefix+"TaskJoinList"))
 
-			}
-
-			// 白泽星管理
-			baizeStar := backend.Group("baizeStar/")
-			{
-				// 添加白泽星
-				baizeStar.POST("add", validatorFactory.Create(consts.ValidatorPrefix+"BaizeStarAdd"))
-				// 白泽星列表
-				baizeStar.GET("list", validatorFactory.Create(consts.ValidatorPrefix+"BaizeStarList"))
-				// 白泽星查询
-				baizeStar.GET("select", validatorFactory.Create(consts.ValidatorPrefix+"BaizeStarSelect"))
-				// 白泽星详情
-				baizeStar.GET("detail", validatorFactory.Create(consts.ValidatorPrefix+"BaizeStarDetail"))
-				// 白泽星详情 包含格式
-				baizeStar.GET("detailWithFormat", validatorFactory.Create(consts.ValidatorPrefix+"BaizeStarDetailWithFormat"))
 			}
 
 			// 数据格式管理

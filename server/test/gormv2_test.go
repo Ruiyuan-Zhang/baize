@@ -269,7 +269,7 @@ func TestCustomeParamsConnMysql(t *testing.T) {
 			User     string
 			Pass     string
 			Charset  string
-		}{Host: "127.0.0.1", DataBase: "db_test", Port: 3306, Prefix: "tb_", User: "root", Pass: "abc123456", Charset: "utf8"},
+		}{Host: "127.0.0.1", DataBase: "db_test", Port: 3306, Prefix: "tb_", User: "root", Pass: "DRsXT5ZJ6Oi55LPQ", Charset: "utf8"},
 		Read: struct {
 			Host     string
 			DataBase string
@@ -278,7 +278,7 @@ func TestCustomeParamsConnMysql(t *testing.T) {
 			User     string
 			Pass     string
 			Charset  string
-		}{Host: "127.0.0.1", DataBase: "db_stocks", Port: 3306, Prefix: "tb_", User: "root", Pass: "abc123456", Charset: "utf8"}}
+		}{Host: "127.0.0.1", DataBase: "db_stocks", Port: 3306, Prefix: "tb_", User: "root", Pass: "DRsXT5ZJ6Oi55LPQ", Charset: "utf8"}}
 
 	var vDataList []DataList
 

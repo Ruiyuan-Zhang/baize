@@ -10,7 +10,6 @@ import (
 	"goskeleton/app/global/consts"
 	"goskeleton/app/model/task"
 	"goskeleton/app/service/task/curd"
-	//"goskeleton/app/model/task"
 	"goskeleton/app/utils/response"
 )
 
@@ -31,37 +30,6 @@ func (t *Task) List(context *gin.Context) {
 	var limit = context.GetFloat64(consts.ValidatorPrefix + "limit")
 	var limitStart = (context.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
 	list := task.CreatTaskFactory("").List(int(limitStart), int(limit))
-	if list != nil {
-		response.Success(context, consts.CurdStatusOkMsg, gin.H{
-			"list": list,
-		})
-	} else {
-		response.Fail(context, consts.CurdSelectFailCode, consts.CurdSelectFailMsg, "")
-	}
-}
-
-// 获取我发布的任务列表
-func (t *Task) PublishList(context *gin.Context) {
-	var limit = context.GetFloat64(consts.ValidatorPrefix + "limit")
-	var limitStart = (context.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
-	var userName = context.GetString(consts.ValidatorPrefix + "userName")
-	list := task.CreatTaskFactory("").PublishSelect(int(limitStart), int(limit), userName)
-	if list != nil {
-		response.Success(context, consts.CurdStatusOkMsg, gin.H{
-			"list": list,
-		})
-	} else {
-		response.Fail(context, consts.CurdSelectFailCode, consts.CurdSelectFailMsg, "")
-	}
-}
-
-// 获取我参与的任务列表
-func (t *Task) ParticipateList(context *gin.Context) {
-	var limit = context.GetFloat64(consts.ValidatorPrefix + "limit")
-	var limitStart = (context.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
-
-	var userName = context.GetString(consts.ValidatorPrefix + "userName")
-	list := task.CreatTaskFactory("").ParticipateSelect(int(limitStart), int(limit), userName)
 	if list != nil {
 		response.Success(context, consts.CurdStatusOkMsg, gin.H{
 			"list": list,

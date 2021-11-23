@@ -11,4 +11,3 @@ func main() {
 	router := routers.InitWebRouter()
 	_ = router.Run(variable.ConfigYml.GetString("HttpServer.Web.Port"))
 }
-

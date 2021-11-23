@@ -5,17 +5,14 @@ import (
 	"goskeleton/app/global/consts"
 	"goskeleton/app/http/validator/common/upload_files"
 	"goskeleton/app/http/validator/common/websocket"
-	"goskeleton/app/http/validator/web/baizeStar"
 	"goskeleton/app/http/validator/web/category"
 	"goskeleton/app/http/validator/web/data_format"
 	"goskeleton/app/http/validator/web/model"
-	"goskeleton/app/http/validator/web/questionaire"
 	"goskeleton/app/http/validator/web/task"
 	"goskeleton/app/http/validator/web/users"
 )
 
-// 各个业务模块验
-//证器必须进行注册（初始化），程序启动时会自动加载到容器
+// 各个业务模块验证器必须进行注册（初始化），程序启动时会自动加载到容器
 func WebRegisterValidator() {
 	//创建容器
 	containers := container.CreateContainersFactory()
@@ -54,51 +51,6 @@ func WebRegisterValidator() {
 		containers.Set(key, category.List{})
 	}
 
-	// 问卷管理
-	{
-		// 参与问卷列表
-		key = consts.ValidatorPrefix + "MyParticipateQuestionaireList"
-		containers.Set(key, questionaire.MyParticipateQuestionaireList{})
-		// 发布问卷列表
-		key = consts.ValidatorPrefix + "MyPublishQuestionaireList"
-		containers.Set(key, questionaire.MyPublishQuestionaireList{})
-
-		// 问卷添加
-		key = consts.ValidatorPrefix + "QuestionaireAdd"
-		containers.Set(key, questionaire.Add{})
-		// 问卷列表
-		key = consts.ValidatorPrefix + "QuestionaireList"
-		containers.Set(key, questionaire.List{})
-		// 问卷查询
-		key = consts.ValidatorPrefix + "QuestionaireSelect"
-		containers.Set(key, questionaire.Select{})
-		// 问卷详情
-		key = consts.ValidatorPrefix + "QuestionaireDetail"
-		containers.Set(key, questionaire.Detail{})
-		// 问卷详情 包含格式
-		key = consts.ValidatorPrefix + "QuestionaireDetailWithFormat"
-		containers.Set(key, questionaire.DetailWithFormat{})
-	}
-
-	// 白泽星管理
-	{
-		// 白泽星添加
-		key = consts.ValidatorPrefix + "BaizeStarAdd"
-		containers.Set(key, baizeStar.Add{})
-		// 白泽星列表
-		key = consts.ValidatorPrefix + "BaizeStarList"
-		containers.Set(key, baizeStar.List{})
-		// 白泽星查询
-		key = consts.ValidatorPrefix + "BaizeStarSelect"
-		containers.Set(key, baizeStar.Select{})
-		// 白泽星详情
-		key = consts.ValidatorPrefix + "BaizeStarDetail"
-		containers.Set(key, baizeStar.Detail{})
-		// 白泽星详情 包含格式
-		key = consts.ValidatorPrefix + "BaizeStarDetailWithFormat"
-		containers.Set(key, baizeStar.DetailWithFormat{})
-	}
-
 	// 任务管理
 	{
 		// 任务添加
@@ -107,14 +59,6 @@ func WebRegisterValidator() {
 		// 任务列表
 		key = consts.ValidatorPrefix + "TaskList"
 		containers.Set(key, task.List{})
-
-		// 参与任务列表
-		key = consts.ValidatorPrefix + "MyParticipateList"
-		containers.Set(key, task.MyParticipateList{})
-		// 发布任务列表
-		key = consts.ValidatorPrefix + "MyPublishList"
-		containers.Set(key, task.MyPublishList{})
-
 		// 任务查询
 		key = consts.ValidatorPrefix + "TaskSelect"
 		containers.Set(key, task.Select{})

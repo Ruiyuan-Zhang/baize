@@ -12,16 +12,6 @@ import (
 	"goskeleton/app/utils/response"
 )
 
-type TaskUserModelView struct {
-	Id        string `json:"id"`
-	TaskId    string `json:"categoryName" gorm:"column:category_name"`
-	TaskName  string `json:"categoryId" gorm:"column:category_id"`
-	UserId    string `json:"name"`
-	UserName  string `json:"description"`
-	CreatedAt string `json:"file"`
-	UpdatedAt string `json:"initModelFile" gorm:"column:init_model_file"`
-}
-
 func (t *Task) TaskUserAdd(c *gin.Context) {
 	if err := task.CreatTaskUserFactory("").Add(c); err == nil {
 		response.Success(c, consts.CurdStatusOkMsg, "")
