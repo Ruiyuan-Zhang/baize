@@ -17,7 +17,6 @@ const Index = () =>{
         })
         if (res instanceof Error) return
         console.log(res)
-        res.list.shift()
         setQuestionaireItems(res.list)
         // setList(res.list)
         })()

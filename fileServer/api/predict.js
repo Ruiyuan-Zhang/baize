@@ -19,6 +19,8 @@ let fileServer = argv[5]
 let imgs = fs.readFileSync(testDataPath,{encoding:'utf-8'})
 imgs = JSON.parse(imgs)
 
+console.log(globalModelPath)
+
 // 下载模型
 let model = await tf.loadLayersModel("file://" + globalModelPath)
 // model.summary()

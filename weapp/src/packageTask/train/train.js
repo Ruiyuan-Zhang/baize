@@ -9,7 +9,6 @@ const imageCategory = async ({globalModelFile,dataList,
     onLoadModel,onIndexEpochEnd,onTrainEnd,
     onModalSaveStart,
     onModalSaveEnd,
-
 }) =>{
     // 0. 数据预处理
     const width = 28

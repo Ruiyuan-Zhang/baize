@@ -4,7 +4,7 @@
 
 echo "start init GFLmini data..."
 
-nowPath="/Users/zhangruiyuan/TaroProjects/GFLMiniProgram"
+nowPath="/Users/zhangruiyuan/baize"
 echo "your GFLmini path is "$nowPath
 echo ""
 
@@ -20,18 +20,18 @@ echo ""
 
 # 清空原有的目录中的内容
 echo "start to delete old file..."
-rm -r $nowPath"/tmp/"*
-rm -r $nowPath"/test/"*
-rm -r $nowPath"/images/back/"*
-rm -r $nowPath"/models/clientModel/"*
-rm -r $nowPath"/models/globalModel/"*
-rm -r $nowPath"/models/globalModelSameDir/"*
+rm -r $nowPath"/fileServer/tmp/"*
+rm -r $nowPath"/fileServer/test/"*
+rm -r $nowPath"/fileServer/images/back/"*
+rm -r $nowPath"/fileServer/models/clientModel/"*
+rm -r $nowPath"/fileServer/models/globalModel/"*
+rm -r $nowPath"/fileServer/models/globalModelSameDir/"*
 echo ""
 
 # 初始化mysql
 echo "start to init your mysql environment..."
-echo "you can edit your sql file in "$nowPath/docs/database/test.sql
-mysql -h 127.0.0.1 -P 3306 -u root  -p abc123456 < $nowPath/docs/database/test.sql
+echo "you can edit your sql file in "$nowPath/server/database/test.sql
+mysql -h 127.0.0.1 -P 3306 -u root   < /Users/zhangruiyuan/baize/server/database/test.sql
 echo ""
 
-echo "inti successful!"
+echo "init successful!"
