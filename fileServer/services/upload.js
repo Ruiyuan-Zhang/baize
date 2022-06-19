@@ -19,14 +19,15 @@ const upload = app =>{
                     return dataBuffer
                 })
             }
+            
             // 1.2 将ArrayBuffer数组打包成Blob对象
-            data[key].data = new Blob(data[key].data, data[key].type.type)
+            data[key].data = new Blob(data[key].data, data[key].type)
             
         }
 
         // 2 写入到文件中
         let dirName = 'models/clientModel/' + path + '/'
-        fs.mkdirSync(dirName)
+        fs.mkdirSync(dirName, {recursive: true})
         for (let key of Object.keys(data)){
             let rs = stream.Readable.from(data[key].data.stream())
             let ws = fs.createWriteStream(dirName+key)

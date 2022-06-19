@@ -14,6 +14,13 @@ pip install launchpadlib -i https://mirrors.cloud.tencent.com/pypi/simple
 
 pip install tensorflow -i https://mirrors.cloud.tencent.com/pypi/simple --ignore-installed  --no-cache-dir
 
+# cd fileServer
+mkdir -p models/globalModelSameDir
+mkdir -p models/globalModel
+mkdir -p models/clentModel
+mkdir -p images/back
+mkdir -p tests
+
 
 
 ```

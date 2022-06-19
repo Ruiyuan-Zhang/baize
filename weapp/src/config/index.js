@@ -8,8 +8,11 @@
  * */ 
 export const local_data_path = '/local_data'
 
-export const file_url = 'http://127.0.0.1:3000'
-export const server_url = 'http://127.0.0.1:20201'  
+export const file_url = 'http://192.168.0.194:3000'
+export const server_url = 'http://192.168.0.194:20201'
+
+// export const file_url = 'http://127.0.0.1:3000'
+// export const server_url = 'http://127.0.0.1:20201'  
 
 // export const file_url = 'http://127.0.0.1/file'
 // export const server_url = 'http://127.0.0.1/v1'  
