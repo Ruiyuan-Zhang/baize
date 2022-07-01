@@ -1,0 +1,86 @@
+.index{
+    display: flex;
+    align-items: center;
+    border-radius: 16rpx;
+    background-color: #ffffff;
+    padding: 24rpx;
+
+    .image{
+        width: 200rpx;
+        height: 200rpx;
+        border-radius: 16rpx;
+        flex-shrink: 0;
+        margin-right: 24rpx;
+        
+    }
+    .body{
+        min-height: 200rpx;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .title{
+            font-size: 28rpx;
+            font-weight: 600;
+            color: rgba(51, 51, 51, 1);
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            .name{
+                display: inline-block;
+                max-width: 300rpx;
+                
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                // overflow: hidden和white-space: nowrap都是必须的否则不会显示省略号；
+            }
+            .tag{
+                width: 136rpx;
+                height: 28rpx;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 4rpx;
+                font-size: 20rpx;
+                color: #F3AB07;
+                background-color: #fbf0d1;
+                margin-left: 14rpx;
+            }
+        }
+        .info{
+            width: 420rpx;
+            font-size: 20rpx;
+            color: rgba(153, 153, 153, 1);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .tail{
+            width: 420rpx;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: rgba(153, 153, 153, 1) ;
+            .author{
+                font-size: 16rpx;
+            }
+            .see{
+                display: flex;
+                align-items: center;
+                line-height: 32rpx;
+                font-size: 24rpx;
+                .seeIcon{
+                    width: 32rpx;
+                    height: 32rpx;
+                    margin-right: 6rpx;
+                }
+            }
+        }
+    }
+}
+.indexClick{
+    background-color: #f1f1f4;
+}

@@ -1,0 +1,108 @@
+page{
+    background-color: #f0f1f4;
+}
+.index{
+    width: 710rpx;
+    height: 300rpx;
+    margin-left: 20rpx;
+    margin-bottom: 28rpx;
+    background-color: #ffffff;
+    position: relative;
+    border-radius: 16rpx;
+    .top{
+        display: flex;
+        padding: 18rpx 16rpx;
+        image{
+            width: 200rpx;
+            height: 200rpx;
+            margin-right: 16rpx;
+        }
+        .right{
+            flex: 1;
+            position: relative;
+            .title{
+                font-size: 28rpx;
+                font-weight: 600;
+                color: #000000;
+                margin-bottom: 16rpx;
+
+                display: inline-block;
+                max-width: 300rpx;
+
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                // overflow: hidden和white-space: nowrap都是必须的否则不会显示省略号；
+            }
+            .content{
+                font-size: 20rpx;
+                font-weight: 500;
+                color: #999999;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .time{
+                font-size: 16rpx;
+                font-weight: 500;
+                color: #999999;
+                position: absolute;
+                bottom: 10rpx;
+
+            }
+            .details{
+                position: absolute;
+                right: 0;
+                top: 0;
+                color: #0D2EF0;
+                font-size: 20rpx;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                image{
+                    width: 24rpx;
+                    height: 24rpx;
+                }
+            }
+        }
+    }
+
+    .midLine{
+        width: 684rpx;
+        height: 2rpx;
+        background-color: #F1F1F1;
+        margin-bottom: 16rpx;
+        margin-left: 13rpx;
+    }
+
+    .buttom{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 14rpx;
+        .handle{
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16rpx;
+            font-weight: 500;
+            color: #333333;
+            image{
+                width: 36rpx;
+                height: 36rpx;
+                margin-right: 6rpx;
+            }
+        }
+        .line{
+            flex-shrink: inherit;
+            height: 36rpx;
+            width: 2rpx;
+            background-color: #F1F1F1;
+
+        }
+    }
+}

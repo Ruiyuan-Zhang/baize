@@ -1,0 +1,90 @@
+page{
+    background-color: #f0f1f4;
+}
+
+.index{
+    padding-top: 48rpx;
+    .content{
+        width: 710rpx;
+        height: 712rpx;
+        background: url('https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20211106112357.png');
+        background-repeat: no-repeat;
+        background-size: 710rpx 744rpx;
+        margin: 0 20rpx;
+        padding-top: 32rpx;
+
+        .imageTip{
+            height: 54rpx;
+            width: 354rpx;
+            background: linear-gradient(180deg, #F3AB07 0%, #FFC7A7 0.01%, #F27F14 100%);
+            border-radius: 200rpx;
+            font-size: 24rpx;
+            font-weight: 600;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            margin-left: 22rpx;
+
+            image{
+                width: 28rpx;
+                height: 28rpx;
+                margin-right: 10rpx;
+            }
+        }
+        .upload{
+            margin-top: 66rpx;
+            padding-top: 20rpx;
+            margin-left: 142rpx;
+            margin-bottom: 64rpx;
+            width: 428rpx;
+            height: 408rpx;
+            background-color: #fbeed0;
+            :global(.at-image-picker){
+                :global(.at-image-picker__flex-box){
+                    position: relative;
+                    left: 20rpx;
+                    text-align: center;
+                    width: 380rpx;
+                    height: 380rpx;
+                    :global(.at-image-picker__flex-item){
+                        &:nth-child(4){
+                            display: none;
+                        }
+                        &:nth-child(3){
+                            display: none;
+                        }
+                        &:nth-child(2){
+                            display: none;
+                        }
+                        
+                    }
+                }
+            }
+        }
+        .tip{
+            font-size: 20rpx;
+            color: #F3AB07;
+            margin-left: 22rpx;
+            display: flex;
+            align-items: center;
+            image{
+                width: 12rpx;
+                height: 12rpx;
+                margin-right: 8rpx;
+            }
+        }
+    }
+    .btn{
+        margin: 72rpx 20rpx;
+        background: linear-gradient(270deg, #F58B2C 0%, #FFC19B 100%);
+        color: #ffffff;
+        border-radius: 2000rpx;
+        font-size: 28rpx;
+        height: 88rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

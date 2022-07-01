@@ -1,0 +1,235 @@
+{
+    "setting": {},
+    "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+    "condition": {
+        "plugin": {
+            "list": []
+        },
+        "game": {
+            "list": []
+        },
+        "gamePlugin": {
+            "list": []
+        },
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/FLcategory/index",
+                    "pathName": "pages/FLcategory/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/FLTemplate/index",
+                    "pathName": "pages/FLTemplate/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/FLedit/index",
+                    "pathName": "pages/FLedit/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/Results/index",
+                    "pathName": "pages/Results/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/modelList/index",
+                    "pathName": "pages/modelList/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/questionnaireList/index",
+                    "pathName": "pages/questionnaireList/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/modelDesc/index",
+                    "pathName": "pages/modelDesc/index",
+                    "query": "id=876576456&title=%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/index",
+                    "pathName": "pages/mine/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/myBaize/index",
+                    "pathName": "pages/myBaize/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/myBaize/index",
+                    "pathName": "pages/myBaize/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/myBaize/index",
+                    "pathName": "pages/myBaize/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/divFLquestionnaire/index",
+                    "pathName": "pages/divFLquestionnaire/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/task/index",
+                    "pathName": "pages/task/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "packageTask/pages/taskSchedule/index",
+                    "pathName": "packageTask/pages/taskSchedule/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "packageTask/pages/myTaskSchedule/index",
+                    "pathName": "packageTask/pages/myTaskSchedule/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "packageTask/pages/myLocalData/index",
+                    "pathName": "packageTask/pages/myLocalData/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "packageTask/pages/addLocalData/index",
+                    "pathName": "packageTask/pages/addLocalData/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "packageTask/pages/train/index",
+                    "pathName": "packageTask/pages/train/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "packageTask/pages/dataPack/index",
+                    "pathName": "packageTask/pages/dataPack/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "packageQuestion/pages/divQuestionnaire/index",
+                    "pathName": "packageQuestion/pages/divQuestionnaire/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "packageQuestion/pages/chooseQuestion/index",
+                    "pathName": "packageQuestion/pages/chooseQuestion/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "packageTask/pages/writeFLQuestionnaire/index",
+                    "pathName": "packageTask/pages/writeFLQuestionnaire/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "packageQuestion/pages/inputQuestion/index",
+                    "pathName": "packageQuestion/pages/inputQuestion/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/categoryModalShow/index",
+                    "pathName": "pages/categoryModalShow/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "packageTask/pages/categoryModalShowResult/index",
+                    "pathName": "packageTask/pages/categoryModalShowResult/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/writeQuestionnaire/index",
+                    "pathName": "pages/writeQuestionnaire/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/question/index",
+                    "pathName": "pages/question/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "packageTask/pages/writeFLQuestionnaire/index",
+                    "pathName": "packageTask/pages/writeFLQuestionnaire/index",
+                    "query": "id=609532725627461632",
+                    "scene": null
+                },
+                {
+                    "name": "packageTask/pages/writeFLQuestionnaire/index",
+                    "pathName": "packageTask/pages/writeFLQuestionnaire/index",
+                    "query": "id=609532725627461632",
+                    "scene": null
+                },
+                {
+                    "name": "packageTask/pages/writeFLQuestionnaire/index",
+                    "pathName": "packageTask/pages/writeFLQuestionnaire/index",
+                    "query": "id=610026896247234560",
+                    "scene": null
+                },
+                {
+                    "name": "pages/task/index",
+                    "pathName": "pages/task/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "packageTask/pages/myLocalData/index",
+                    "pathName": "packageTask/pages/myLocalData/index",
+                    "query": "id=609532441316564992",
+                    "scene": null
+                },
+                {
+                    "name": "packageTask/pages/myLocalData/index",
+                    "pathName": "packageTask/pages/myLocalData/index",
+                    "query": "id=609532441316564992&name=%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB-%E7%BE%A4%E4%BD%93%E5%AE%9E%E9%AA%8C",
+                    "scene": null
+                },
+                {
+                    "name": "packageUser/pages/login/index",
+                    "pathName": "packageUser/pages/login/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/coco-ssd/index",
+                    "pathName": "pages/coco-ssd/index",
+                    "query": "",
+                    "scene": null
+                }
+            ]
+        }
+    }
+}

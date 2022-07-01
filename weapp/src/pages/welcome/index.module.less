@@ -1,0 +1,67 @@
+
+.index{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    // flex-direction: column;
+    .swiper{
+        // margin-top: 370rpx;
+        height: 840rpx;
+        flex: 1;
+        .swiperItem{
+            &:nth-child(1){
+                .content{
+                    image{
+                        width: 400rpx;
+                        height: 400rpx;
+                    }
+                }
+            }
+            .content{
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                image{
+                    width: 570rpx;
+                    height: 570rpx;
+                }
+                .infos{
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    .info{
+                        font-family: PingFang SC;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 28rpx;
+                        color: #0C2DEF;
+                        margin-bottom: 10rpx;
+                    }
+                }
+            }
+        }
+    }
+    .tail{
+        font-weight: 500;
+        color: #999999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        bottom: 100rpx;
+        width: 100vw;
+        .left{
+            font-size: 28rpx;
+        }
+        .line{
+            height: 44rpx;
+            width: 2rpx;
+            background-color: #999999;
+            margin: 0 16rpx;
+        }
+        .right{
+            font-size: 16rpx;
+        }
+    }
+}
